@@ -10,6 +10,8 @@ import SwiftUI
 
 struct Game1View: View {
     
+    let imageArray: [(imageName: String, position: CGPoint)] = [("sacola1", CGPoint(x: UIScreen.main.bounds.width * 3.2 / 5, y: UIScreen.main.bounds.height * 4.2 / 5)) , ("tampa1", CGPoint(x: UIScreen.main.bounds.width * 4.3 / 5, y: UIScreen.main.bounds.height * 3 / 5)), ("tampa2", CGPoint(x: UIScreen.main.bounds.width * 4.3 / 5, y: UIScreen.main.bounds.height * 3 / 5))]
+    
     @State var isDragging = false
     @State private var isImageVisible = true
     @State var position = CGSize.zero
@@ -23,44 +25,48 @@ struct Game1View: View {
             
             GeometryReader { geo in
                 
-                Image("sacola1")
-                    .renderingMode(.original)
-                    .resizable()
-                    .opacity(isImageVisible ? 1 : 0)
-                    .animation(.linear)
-                    .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.2)
-                    .offset(x: position.width, y: position.height)
-                    .position(x: UIScreen.main.bounds.width * 3.2 / 5, y: UIScreen.main.bounds.height * 4.2 / 5)
-                    .onTapGesture {
-                        withAnimation {
-                            isImageVisible.toggle()
-                        }
-                    }
-                
-                Button {
-                    print("Edit button was tapped")
-                } label: {
-                    Image("tampa1")
+                ForEach(imageArray, id: \.self.imageName) { image in
+                    Image(image.imageName)
                         .renderingMode(.original)
                         .resizable()
+                        .opacity(isImageVisible ? 1 : 0)
+                        .animation(.linear)
+                        .frame(width: geo.size.width * 0.1, height: geo.size.height * 0.07)
                         .offset(x: position.width, y: position.height)
+                        .position(image.position)
+                        .onTapGesture {
+                            withAnimation {
+                                isImageVisible.toggle()
+                            }
+                        }
+                    
                 }
-                .frame(width: geo.size.width * 0.07, height: geo.size.height * 0.06)
-                .position(x: UIScreen.main.bounds.width * 4.3 / 5, y: UIScreen.main.bounds.height * 3 / 5)
                 
-                //                Image("tampa1")
-                //                    .renderingMode(.original)
-                //                    .resizable()
-                //                    .opacity(isImageVisible ? 1 : 0)
-                //                    .animation(.linear)
-                //                    .frame(width: geo.size.width * 0.07, height: geo.size.height * 0.06)
-                //                    .offset(x: position.width, y: position.height)
-                //                    .position(x: UIScreen.main.bounds.width * 4.3 / 5, y: UIScreen.main.bounds.height * 3 / 5)
-                //                    .onTapGesture {
-                //                        withAnimation {
-                //                            isImageVisible.toggle()
-                //                        }
-                //                    }
+                
+//                Image("sacola1")
+//                    .renderingMode(.original)
+//                    .resizable()
+//                    .opacity(isImageVisible ? 1 : 0)
+//                    .animation(.linear)
+//                    .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.2)
+//                    .offset(x: position.width, y: position.height)
+//                    .position(x: UIScreen.main.bounds.width * 3.2 / 5, y: UIScreen.main.bounds.height * 4.2 / 5)
+//                    .onTapGesture {
+//                        withAnimation {
+//                            isImageVisible.toggle()
+//                        }
+//                    }
+                
+//                Button {
+//                    print("Edit button was tapped")
+//                } label: {
+//                    Image("tampa1")
+//                        .renderingMode(.original)
+//                        .resizable()
+//                        .offset(x: position.width, y: position.height)
+//                }
+//                .frame(width: geo.size.width * 0.07, height: geo.size.height * 0.06)
+//                .position(x: UIScreen.main.bounds.width * 4.3 / 5, y: UIScreen.main.bounds.height * 3 / 5)
             }
         }
         .ignoresSafeArea()
