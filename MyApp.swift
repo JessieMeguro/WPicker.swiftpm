@@ -4,7 +4,14 @@ import SwiftUI
 struct MyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+            Game4View()
+                    
+            }
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
+            .navigationViewStyle(.stack)
         }
+        
     }
 }

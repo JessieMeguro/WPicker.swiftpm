@@ -16,9 +16,13 @@ struct Game1View: View {
     @State var imageArray: [(imageName: String, position: CGPoint, isImageVisible: Bool)] = [("sacola1", CGPoint(x: UIScreen.main.bounds.width * 4.3 / 5, y: UIScreen.main.bounds.height * 3.5 / 5), true), ("tampa1", CGPoint(x: UIScreen.main.bounds.width * 3.2 / 5, y: UIScreen.main.bounds.height * 4.2 / 5), true), ("tampa2", CGPoint(x: UIScreen.main.bounds.width * 3.2 / 5, y: UIScreen.main.bounds.height * 2.5 / 5), true ), ("bottle1", CGPoint(x: UIScreen.main.bounds.width * 4.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5), true), ("bottle2", CGPoint(x: UIScreen.main.bounds.width * 1.5 / 5, y: UIScreen.main.bounds.height * 3.1 / 5), true), ("food1", CGPoint(x: UIScreen.main.bounds.width * 2.9 / 5, y: UIScreen.main.bounds.height * 2.9 / 5), true)
     ]
     
+    @State var allRemoved = false
     @State var isDragging = false
     @State var position = CGSize.zero
-
+    
+    init(){
+        UINavigationBar.setAnimationsEnabled(false)
+    }
     
     var body: some View {
         
@@ -42,19 +46,31 @@ struct Game1View: View {
                             withAnimation {
                                 imageArray[index].isImageVisible.toggle()
                                 playSound()
+                                allRemoved = imageArray.allSatisfy({!$0.isImageVisible})
                             }
                         }
-                    
+                }
+                if allRemoved {
+                    VStack {
+//                        Image("jornalTela1")
+                        NavigationLink(destination: Game2View()) {
+                            Text("Botão")
+                                .background(.green)
+                                .zIndex(10)
+                        }
+                    }
                 }
             }
         }
         .ignoresSafeArea()
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
         
     }
 }
 
 func playSound() {
-    let url = Bundle.main.url(forResource: "plasticsound", withExtension: "mp3")
+    let url = Bundle.main.url(forResource: "plasticSound", withExtension: "mp3")
     
     guard url != nil else {
         return

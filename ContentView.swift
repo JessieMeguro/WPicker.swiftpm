@@ -5,16 +5,21 @@ struct ContentView: View {
         ZStack {
             Color.brown.ignoresSafeArea()
             
-            GeometryReader { geo in
-                ScrollView {
-                    VStack {
-                        Game1View()
-                        Game2View()
-                        Game3View()
-                    }
+            ScrollView {
+                VStack {
+                    Game1View()
+                    Game2View()
+                    Game3View()
+                    Game4View()
                 }
             }
         }
         .frame( maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }
