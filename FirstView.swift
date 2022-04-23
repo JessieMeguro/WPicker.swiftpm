@@ -15,12 +15,9 @@ struct FirstView: View {
             VStack(alignment: .center){
                 Image("fundoTela1")
                     .resizable()
-//                    .aspectRatio(contentMode: .fill)
                     .scaledToFit()
-                                .padding(3)
+                                .padding(100)
             }
-//            .frame(width: 600, height: 750, alignment: .center)
-//            .padding(200)
             
         }
     }
