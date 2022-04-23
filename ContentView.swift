@@ -3,7 +3,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack {
-            Color.brown.ignoresSafeArea()
+            Color.accentColor.ignoresSafeArea()
             
             ScrollView {
                 VStack {
