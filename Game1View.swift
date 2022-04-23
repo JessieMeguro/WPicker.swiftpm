@@ -24,6 +24,8 @@ struct Game1View: View {
         UINavigationBar.setAnimationsEnabled(false)
     }
     
+    @State private var isImageVisible = true
+    
     var body: some View {
         
         ZStack {
@@ -31,13 +33,47 @@ struct Game1View: View {
                 .resizable()
                 .scaledToFill()
             
-            VStack {
-                Image("jornalTela2")
+            ZStack {
+                Image("jornal2")
                     .resizable()
-                                .frame(width: 568, height: 161)
-                                .position(x: UIScreen.main.bounds.width * 2.1 / 5, y: UIScreen.main.bounds.height * 0.5 / 5)
-                                .rotationEffect(.degrees(-12))
+                    .frame(width: 520, height: 202)
+                
+                Text("José starts his days picking up \nthe street trash, specially the plastic \nthrown around during the nights.")
+                    .padding(.bottom)
+                    .font(.custom("Inter-SemiBold", size: 27))
+                    .foregroundColor(.black)
+                    .multilineTextAlignment(.center)
             }
+            .position(x: UIScreen.main.bounds.width * 1.9 / 5, y: UIScreen.main.bounds.height * 0.55 / 5)
+            .rotationEffect(.degrees(-11))
+                
+                ZStack {
+                    Image("jornal4")
+                        .resizable()
+                        .frame(width: 500, height: 125)
+                        .opacity(isImageVisible ? 0 : 1)
+                        .animation(.spring().delay(4), value: isImageVisible)
+                    
+                    Text("Help him pick up the plastic trash.")
+                        .padding(.bottom)
+                        .font(.custom("Inter-SemiBold", size: 24))
+                        .foregroundColor(.black)
+                        .multilineTextAlignment(.center)
+                        .opacity(isImageVisible ? 0 : 1)
+                        .animation(.spring().delay(4), value: isImageVisible)
+                }
+                .onAppear {
+                    isImageVisible = false
+                }
+                .position(x: UIScreen.main.bounds.width * 2 / 5, y: UIScreen.main.bounds.height * 0.9 / 5)
+                .rotationEffect(.degrees(-11))
+            
+//            ZStack {
+//                Image("jornal2")
+//                    .resizable()
+//                    .frame(width: 520, height: 202)
+//            }
+            
             
             GeometryReader { geo in
                 
@@ -60,7 +96,7 @@ struct Game1View: View {
                 }
                 if allRemoved {
                     VStack {
-//                        Image("jornalTela1")
+                        //                        Image("jornalTela1")
                         NavigationLink(destination: Game2View()) {
                             Text("Botão")
                                 .background(.green)
