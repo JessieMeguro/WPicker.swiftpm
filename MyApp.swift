@@ -4,13 +4,13 @@ import SwiftUI
 struct MyApp: App {
     var body: some Scene {
         WindowGroup {
-//            NavigationView {
+            NavigationView {
             FirstView()
                     
-//            }
-//            .navigationBarHidden(true)
-//            .navigationBarBackButtonHidden(true)
-//            .navigationViewStyle(.stack)
+            }
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
+            .navigationViewStyle(.stack)
         }
         
     }
