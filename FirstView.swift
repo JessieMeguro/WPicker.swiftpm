@@ -24,8 +24,9 @@ struct FirstView: View {
                     .animation(.default, value: configuration.isPressed)
                 Text("Start")
                     .padding(.bottom)
-                    .font(.system(size: 50, weight: .bold))
-                    .foregroundColor(.blue)
+                    .font(.custom("Inter-Bold", size: 40))
+                    .foregroundColor(.black)
+                    .opacity(0.9)
             }
         }
     }
@@ -46,9 +47,9 @@ struct FirstView: View {
             VStack {
                 Image("jornalTela1")
                     .resizable()
-                                .frame(width: 400, height: 500)
+                                .frame(width: 300, height: 400)
                                 .position(x: UIScreen.main.bounds.width * 4 / 5, y: UIScreen.main.bounds.height * 1.4 / 5)
-                                .rotationEffect(.degrees(-15))
+                                .rotationEffect(.degrees(-12))
             }
             
             VStack {
