@@ -53,7 +53,7 @@ struct FirstView: View {
             }
             
             VStack {
-                NavigationLink(destination: Game1View(), isActive: $canNavigate) {
+                NavigationLink(destination: View2(), isActive: $canNavigate) {
                     Button("") {
                         self.canNavigate = true
                     } .buttonStyle(StartButton())
