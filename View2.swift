@@ -10,6 +10,7 @@ import SwiftUI
 struct View2: View {
     
     @State var canNavigate: Bool = false
+    
     init(){
         UINavigationBar.setAnimationsEnabled(false)
     }
@@ -34,7 +35,7 @@ struct View2: View {
                 Image("fundoTela1")
                     .resizable()
                     .scaledToFit()
-                    .padding(70)
+                    .padding(80)
             }
             
             VStack{
@@ -44,9 +45,12 @@ struct View2: View {
                     } .buttonStyle(NextButton())
                 }
                 .frame(width: 50, height: 50)
-                .position(x: UIScreen.main.bounds.width * 4.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5)
+                .position(x: UIScreen.main.bounds.width * 4.68 / 5, y: UIScreen.main.bounds.height * 4.68 / 5)
             }
         }
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
+        .navigationViewStyle(.stack)
     }
 }
 

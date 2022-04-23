@@ -10,17 +10,16 @@ import SwiftUI
 
 struct Game2View: View {
     
-    @State private var showingPopover = false
     @State var BackgroundSize = CGSize.zero
     
     var body: some View {
         ZStack {
             
-            Button ("Show") {
-                showingPopover = true
-            }
-            .background(.blue)
-            .zIndex(2)
+//            Button ("Show") {
+//                showingPopover = true
+//            }
+//            .background(.blue)
+//            .zIndex(2)
             
             Image("fundoJogo2")
                 .resizable()
@@ -148,12 +147,6 @@ struct Game2View: View {
                 }
             }
             
-            
-        }
-        .popover(isPresented: $showingPopover) {
-            Text("KSNDKLSADNAS")
-                .font(.headline)
-                .background(.green)
             
         }
         .ignoresSafeArea()

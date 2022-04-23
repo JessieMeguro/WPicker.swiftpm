@@ -41,7 +41,7 @@ struct FirstView: View {
                 Image("fundoTela1")
                     .resizable()
                     .scaledToFit()
-                    .padding(70)
+                    .padding(80)
             }
             
             VStack {
