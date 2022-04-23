@@ -31,6 +31,14 @@ struct Game1View: View {
                 .resizable()
                 .scaledToFill()
             
+            VStack {
+                Image("jornalTela2")
+                    .resizable()
+                                .frame(width: 568, height: 161)
+                                .position(x: UIScreen.main.bounds.width * 2.1 / 5, y: UIScreen.main.bounds.height * 0.5 / 5)
+                                .rotationEffect(.degrees(-12))
+            }
+            
             GeometryReader { geo in
                 
                 ForEach(Array(imageArray.enumerated()), id: \.0) { index, image in

@@ -47,7 +47,7 @@ struct FirstView: View {
             VStack {
                 Image("jornalTela1")
                     .resizable()
-                                .frame(width: 300, height: 400)
+                                .frame(width: 400, height: 500)
                                 .position(x: UIScreen.main.bounds.width * 4 / 5, y: UIScreen.main.bounds.height * 1.4 / 5)
                                 .rotationEffect(.degrees(-12))
             }
