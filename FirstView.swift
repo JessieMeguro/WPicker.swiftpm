@@ -20,7 +20,7 @@ struct FirstView: View {
             ZStack {
                 Image("buttonStart")
                     .scaleEffect(configuration.isPressed ? 0.8 : 0.8)
-//                    .opacity(configuration.isPressed ? 1 : 08)
+                //                    .opacity(configuration.isPressed ? 1 : 08)
                     .animation(.default, value: configuration.isPressed)
                 Text("Start")
                     .padding(.bottom)
@@ -34,6 +34,7 @@ struct FirstView: View {
         
         ZStack {
             Color.accentColor.ignoresSafeArea()
+        
             
             VStack(alignment: .center){
                 Image("fundoTela1")
@@ -41,6 +42,15 @@ struct FirstView: View {
                     .scaledToFit()
                     .padding(70)
             }
+            
+            VStack {
+                Image("jornalTela1")
+                    .resizable()
+                                .frame(width: 400, height: 500)
+                                .position(x: UIScreen.main.bounds.width * 4 / 5, y: UIScreen.main.bounds.height * 1.4 / 5)
+                                .rotationEffect(.degrees(-15))
+            }
+            
             VStack {
                 NavigationLink(destination: Game1View(), isActive: $canNavigate) {
                     Button("") {
