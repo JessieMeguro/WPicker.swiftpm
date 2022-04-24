@@ -29,6 +29,30 @@ struct ContinueButton: ButtonStyle {
     }
 }
 
+struct Loading: View {
+    
+    @State var animate = false
+    @State var needsClick = true
+    
+    var body: some View {
+        ZStack{
+            Circle().fill(Color.blue.opacity(0.25)).frame(width: 150, height: 150)
+                .scaleEffect(self.animate ? 1 : 0)
+            Circle().fill(Color.blue.opacity(0.35)).frame(width: 100, height: 100)
+                .scaleEffect(self.animate ? 1 : 0)
+            Circle().fill(Color.blue)
+                .frame(width: 50, height: 50)
+                .scaleEffect(self.animate ? 1 : 0)
+        }
+        .onAppear {
+            self.animate.toggle()
+            needsClick = false
+        }
+        .opacity(needsClick ? 1 : 0)
+        .animation(Animation.linear(duration: 1).repeatCount(5, autoreverses: false))
+    }
+}
+
 struct Game1View: View {
     
     @State var imageArray: [(imageName: String, position: CGPoint, isImageVisible: Bool)] = [("sacola1", CGPoint(x: UIScreen.main.bounds.width * 4.3 / 5, y: UIScreen.main.bounds.height * 3.5 / 5), true), ("tampa1", CGPoint(x: UIScreen.main.bounds.width * 3.2 / 5, y: UIScreen.main.bounds.height * 4.2 / 5), true), ("tampa2", CGPoint(x: UIScreen.main.bounds.width * 3.2 / 5, y: UIScreen.main.bounds.height * 2.5 / 5), true ), ("bottle1", CGPoint(x: UIScreen.main.bounds.width * 4.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5), true), ("bottle2", CGPoint(x: UIScreen.main.bounds.width * 1.5 / 5, y: UIScreen.main.bounds.height * 3.1 / 5), true), ("food1", CGPoint(x: UIScreen.main.bounds.width * 2.9 / 5, y: UIScreen.main.bounds.height * 2.9 / 5), true)
@@ -93,6 +117,11 @@ struct Game1View: View {
             //                    .resizable()
             //                    .frame(width: 520, height: 202)
             //            }
+            
+            
+                Loading()
+                    .position(x: UIScreen.main.bounds.width * 1.5 / 5, y: UIScreen.main.bounds.height * 3.1 / 5)
+                    .zIndex(20)
             
             
             GeometryReader { geo in
