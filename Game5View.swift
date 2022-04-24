@@ -73,14 +73,14 @@ struct Game5View: View {
             .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 0.7 / 5)
             
             ZStack {
-                Image("jornalAction4")
+                Image("newsInfo")
                     .resizable()
                     .frame(width: 500, height: 125)
                 
                 Text("Help him pick up the plastic trash.")
                     .padding(.bottom)
                     .font(.custom("Inter-SemiBold", size: 24))
-                    .foregroundColor(.black)
+                    .foregroundColor(.white)
                     .multilineTextAlignment(.center)
             }
             .position(x: UIScreen.main.bounds.width * 2 / 5, y: UIScreen.main.bounds.height * 1.15 / 5)
@@ -100,12 +100,12 @@ struct Game5View: View {
                     if if1Clicked {
                         ZStack {
                             
-                            Text("Broken glass must be wrapped \nin paper before thrown out \nto protect waste pickers.")
+                            Text("Too small to recycle.")
                                 .padding(.bottom)
-                                .font(.custom("Inter-SemiBold", size: 24))
+                                .font(.custom("Inter-SemiBold", size: 18))
                                 .foregroundColor(.white)
                                 .multilineTextAlignment(.center)
-                                .zIndex(24)
+                                .zIndex(23)
                                 .opacity(isImageVisible1 ? 1 : 0)
                                 .animation(.easeInOut.delay(5), value: isImageVisible1)
                                 .onAppear() {
@@ -115,15 +115,16 @@ struct Game5View: View {
                             Image("newsInfo")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 500, height: 500)
-                                .zIndex(23)
+                                .frame(width: 230, height: 300)
+                                .zIndex(22)
                                 .opacity(isImageVisible1 ? 1 : 0)
                                 .animation(.easeInOut.delay(5), value: isImageVisible1)
                                 .onAppear() {
                                     isImageVisible1 = false
                                 }
                         }
-                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
+                        .position(x: UIScreen.main.bounds.width * 3.8 / 5, y: UIScreen.main.bounds.height * 4.75 / 5)
+                        .rotationEffect(.degrees(-4))
                     }
                     
                     Image("extintor")
@@ -135,9 +136,10 @@ struct Game5View: View {
                         }
                     if if2Clicked {
                         ZStack {
-                            Text("Broken glass must be wrapped \nin paper before thrown out \nto protect waste pickers.")
+                            
+                            Text("Extinguishers are\nhazardous waste.")
                                 .padding(.bottom)
-                                .font(.custom("Inter-SemiBold", size: 24))
+                                .font(.custom("Inter-SemiBold", size: 18))
                                 .foregroundColor(.white)
                                 .multilineTextAlignment(.center)
                                 .zIndex(24)
@@ -150,7 +152,7 @@ struct Game5View: View {
                             Image("newsInfo")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 500, height: 500)
+                                .frame(width: 230, height: 300)
                                 .zIndex(23)
                                 .opacity(isImageVisible2 ? 1 : 0)
                                 .animation(.easeInOut.delay(5), value: isImageVisible2)
@@ -158,7 +160,7 @@ struct Game5View: View {
                                     isImageVisible2 = false
                                 }
                         }
-                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
+                        .position(x: UIScreen.main.bounds.width * 0.8 / 5, y: UIScreen.main.bounds.height * 4.6 / 5)
                     }
                     
                     Image("pilha")
@@ -170,9 +172,10 @@ struct Game5View: View {
                         }
                     if if3Clicked {
                         ZStack {
-                            Text("Broken glass must be wrapped \nin paper before thrown out \nto protect waste pickers.")
+                            
+                            Text("Toxic metals, be careful.")
                                 .padding(.bottom)
-                                .font(.custom("Inter-SemiBold", size: 24))
+                                .font(.custom("Inter-SemiBold", size: 18))
                                 .foregroundColor(.white)
                                 .multilineTextAlignment(.center)
                                 .zIndex(24)
@@ -185,7 +188,7 @@ struct Game5View: View {
                             Image("newsInfo")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 500, height: 500)
+                                .frame(width: 230, height: 300)
                                 .zIndex(23)
                                 .opacity(isImageVisible3 ? 1 : 0)
                                 .animation(.easeInOut.delay(5), value: isImageVisible3)
@@ -193,7 +196,8 @@ struct Game5View: View {
                                     isImageVisible3 = false
                                 }
                         }
-                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
+                        .position(x: UIScreen.main.bounds.width * 2.35 / 5, y: UIScreen.main.bounds.height * 4.06 / 5)
+                        .rotationEffect(.degrees(-8))
                     }
                 }
             }
