@@ -29,12 +29,15 @@ import SwiftUI
 
 struct Game5View: View {
     
-    @State var imageArray: [(imageName: String, position: CGPoint, isImageVisible: Bool)] = [("sacola1", CGPoint(x: UIScreen.main.bounds.width * 4.3 / 5, y: UIScreen.main.bounds.height * 3.5 / 5), true), ("tampa1", CGPoint(x: UIScreen.main.bounds.width * 3.2 / 5, y: UIScreen.main.bounds.height * 4.2 / 5), true), ("tampa2", CGPoint(x: UIScreen.main.bounds.width * 3.2 / 5, y: UIScreen.main.bounds.height * 2.5 / 5), true ), ("bottle1", CGPoint(x: UIScreen.main.bounds.width * 4.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5), true), ("bottle2", CGPoint(x: UIScreen.main.bounds.width * 1.5 / 5, y: UIScreen.main.bounds.height * 3.1 / 5), true), ("food1", CGPoint(x: UIScreen.main.bounds.width * 2.9 / 5, y: UIScreen.main.bounds.height * 2.9 / 5), true)
+    @State var imageArray: [(imageName: String, position: CGPoint, isImageVisible: Bool)] = [("cano", CGPoint(x: UIScreen.main.bounds.width * 3.5 / 5, y: UIScreen.main.bounds.height * 4 / 5), true), ("coca", CGPoint(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5), true), ("jarraMetal", CGPoint(x: UIScreen.main.bounds.width * 1.5 / 5, y: UIScreen.main.bounds.height * 3.8 / 5), true )
     ]
     
     @State var allRemoved = false
     @State var isDragging = false
     @State var position = CGSize.zero
+    @State var if1Clicked = false
+    @State var if2Clicked = false
+    @State var if3Clicked = false
     
     init(){
         UINavigationBar.setAnimationsEnabled(false)
@@ -47,7 +50,7 @@ struct Game5View: View {
     var body: some View {
         
         ZStack {
-            Image("fundoJogo1")
+            Image("fundoJogo4")
                 .resizable()
                 .scaledToFill()
             
@@ -62,8 +65,7 @@ struct Game5View: View {
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
             }
-            .position(x: UIScreen.main.bounds.width * 1.9 / 5, y: UIScreen.main.bounds.height * 0.55 / 5)
-            .rotationEffect(.degrees(-11))
+            .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 0.7 / 5)
             
             ZStack {
                 Image("jornal4")
@@ -83,16 +85,39 @@ struct Game5View: View {
             .onAppear {
                 isImageVisible = false
             }
-            .position(x: UIScreen.main.bounds.width * 2 / 5, y: UIScreen.main.bounds.height * 0.9 / 5)
-            .rotationEffect(.degrees(-11))
-            
-            //            ZStack {
-            //                Image("jornal2")
-            //                    .resizable()
-            //                    .frame(width: 520, height: 202)
-            //            }
+            .position(x: UIScreen.main.bounds.width * 2 / 5, y: UIScreen.main.bounds.height * 1 / 5)
+            .rotationEffect(.degrees(-2))
             
             
+            GeometryReader { geo in
+                ZStack {
+            Image("clipes")
+                .resizable()
+                .frame(width: geo.size.width * 0.06, height: geo.size.height * 0.03)
+                .position(x: UIScreen.main.bounds.width * 3.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5)
+                .onTapGesture {
+                    if1Clicked = true
+                }
+                    
+                    Image("extintor")
+                        .resizable()
+                        .frame(width: geo.size.width * 0.15, height: geo.size.height * 0.2)
+                        .position(x: UIScreen.main.bounds.width * 0.8 / 5, y: UIScreen.main.bounds.height * 4.3 / 5)
+                        .onTapGesture {
+                            if2Clicked = true
+                        }
+                    
+                    Image("pilha")
+                        .resizable()
+                        .frame(width: geo.size.width * 0.08, height: geo.size.height * 0.04)
+                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 3.9 / 5)
+                        .onTapGesture {
+                            if3Clicked = true
+                        }
+                }
+            }
+            
+        
             
             GeometryReader { geo in
                 
@@ -102,7 +127,7 @@ struct Game5View: View {
                         .resizable()
                         .opacity(image.isImageVisible ? 1 : 0)
                         .animation(.linear)
-                        .frame(width: geo.size.width * 0.12, height: geo.size.height * 0.09)
+                        .frame(width: geo.size.width * 0.123, height: geo.size.height * 0.07)
                         .offset(x: position.width, y: position.height)
                         .position(image.position)
                         .onTapGesture {
