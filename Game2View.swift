@@ -11,15 +11,25 @@ import SwiftUI
 struct Game2View: View {
     
     @State var BackgroundSize = CGSize.zero
+    @State var if1Clicked = false
+    @State var if2Clicked = false
+    @State var if3Clicked = false
+    @State var if4Clicked = false
+    @State private var fadeInOut = false
+    @State private var isImageVisible = true
+    
+    init(){
+        UINavigationBar.setAnimationsEnabled(false)
+    }
     
     var body: some View {
         ZStack {
             
-//            Button ("Show") {
-//                showingPopover = true
-//            }
-//            .background(.blue)
-//            .zIndex(2)
+            //            Button ("Show") {
+            //                showingPopover = true
+            //            }
+            //            .background(.blue)
+            //            .zIndex(2)
             
             Image("fundoJogo2")
                 .resizable()
@@ -101,63 +111,77 @@ struct Game2View: View {
                         .frame(width: geo.size.width * 0.25, height: geo.size.height * 0.3)
                         .position(x: UIScreen.main.bounds.width * 3.8 / 5, y: UIScreen.main.bounds.height * 1 / 5)
                         .onTapGesture {
-                            print("dalhe")
+                            if1Clicked = true
                         }
                 }
-                
-            }
-            
-            Group {
-                
-                GeometryReader { geo in
-                    Image("bolaDeGude")
-                        .resizable()
-                        .frame(width: geo.size.width * 0.07, height: geo.size.height * 0.05)
-                        .position(x: UIScreen.main.bounds.width * 4.5 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1.1 / 5)
-                    
-                    Image("copo1")
-                        .resizable()
-                        .frame(width: geo.size.width * 0.19, height: geo.size.height * 0.15)
-                        .position(x: UIScreen.main.bounds.width * 4.3 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1.9 / 5.1)
-                    
-                    Image("espelho2")
-                        .resizable()
-                        .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.22)
-                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 0.9 / 5)
-                    
-                    Image("jarra1")
-                        .resizable()
-                        .frame(width: geo.size.width * 0.24, height: geo.size.height * 0.18)
-                        .position(x: UIScreen.main.bounds.width * 1 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1.8 / 5)
-                    
-                    Image("perfume2")
-                        .resizable()
-                        .frame(width: geo.size.width * 0.24, height: geo.size.height * 0.18)
-                        .position(x: UIScreen.main.bounds.width * 0.9 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 0.75 / 5)
-                    
-                    Image("vinagre1")
-                        .resizable()
-                        .frame(width: geo.size.width * 0.2, height: geo.size.height * 0.10)
-                        .position(x: UIScreen.main.bounds.width * 2.4 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 2 / 5)
-                    
-                    Image("vinho2")
-                        .resizable()
-                        .frame(width: geo.size.width * 0.25, height: geo.size.height * 0.3)
-                        .position(x: UIScreen.main.bounds.width * 3.8 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1 / 5)
+                if if1Clicked {
+                    VStack {
+                        Image("jornal2")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 200, height: 200)
+                            .zIndex(20)
+                            .opacity(isImageVisible ? 1 : 0)
+                            .animation(.easeInOut.delay(8), value: isImageVisible)
+                            .onAppear() {
+                                isImageVisible = false
+                                }
+                            .position(x: UIScreen.main.bounds.width * 3.8 / 5, y: UIScreen.main.bounds.height * 1 / 5)
+                            }
+                    }
                 }
+                
+                Group {
+                    
+                    GeometryReader { geo in
+                        Image("bolaDeGude")
+                            .resizable()
+                            .frame(width: geo.size.width * 0.07, height: geo.size.height * 0.05)
+                            .position(x: UIScreen.main.bounds.width * 4.5 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1.1 / 5)
+                        
+                        Image("copo1")
+                            .resizable()
+                            .frame(width: geo.size.width * 0.19, height: geo.size.height * 0.15)
+                            .position(x: UIScreen.main.bounds.width * 4.3 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1.9 / 5.1)
+                        
+                        Image("espelho2")
+                            .resizable()
+                            .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.22)
+                            .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 0.9 / 5)
+                        
+                        Image("jarra1")
+                            .resizable()
+                            .frame(width: geo.size.width * 0.24, height: geo.size.height * 0.18)
+                            .position(x: UIScreen.main.bounds.width * 1 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1.8 / 5)
+                        
+                        Image("perfume2")
+                            .resizable()
+                            .frame(width: geo.size.width * 0.24, height: geo.size.height * 0.18)
+                            .position(x: UIScreen.main.bounds.width * 0.9 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 0.75 / 5)
+                        
+                        Image("vinagre1")
+                            .resizable()
+                            .frame(width: geo.size.width * 0.2, height: geo.size.height * 0.10)
+                            .position(x: UIScreen.main.bounds.width * 2.4 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 2 / 5)
+                        
+                        Image("vinho2")
+                            .resizable()
+                            .frame(width: geo.size.width * 0.25, height: geo.size.height * 0.3)
+                            .position(x: UIScreen.main.bounds.width * 3.8 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1 / 5)
+                    }
+                }
+                
+                
             }
-            
-            
+            .ignoresSafeArea()
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
         }
-        .ignoresSafeArea()
-                    .navigationBarHidden(true)
-                    .navigationBarBackButtonHidden(true)
     }
-}
-
-struct Game2View_Previews: PreviewProvider {
-    static var previews: some View {
-        Game2View()
-            .previewInterfaceOrientation(.portraitUpsideDown)
+    
+    struct Game2View_Previews: PreviewProvider {
+        static var previews: some View {
+            Game2View()
+                .previewInterfaceOrientation(.portraitUpsideDown)
+        }
     }
-}
