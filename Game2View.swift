@@ -5,8 +5,11 @@
 //  Created by Jessica Akemi Meguro on 20/04/22.
 //
 
+import AVFoundation
 import Foundation
 import SwiftUI
+
+var audioPlayer: AVAudioPlayer!
 
 struct Game2View: View {
     
@@ -78,6 +81,9 @@ struct Game2View: View {
                         .resizable()
                         .frame(width: geo.size.width * 0.07, height: geo.size.height * 0.05)
                         .position(x: UIScreen.main.bounds.width * 4.5 / 5, y: UIScreen.main.bounds.height * 1.1 / 5)
+                        .onTapGesture {
+                            playSound()
+                        }
                     
                     
                     Image("copo1")
@@ -85,12 +91,18 @@ struct Game2View: View {
                         .resizable()
                         .frame(width: geo.size.width * 0.19, height: geo.size.height * 0.15)
                         .position(x: UIScreen.main.bounds.width * 4.3 / 5, y: UIScreen.main.bounds.height * 1.9 / 5.1)
+                        .onTapGesture {
+                            playSound()
+                        }
                     
                     Image("espelho1")
                         .renderingMode(.original)
                         .resizable()
                         .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.22)
                         .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 0.9 / 5)
+                        .onTapGesture {
+                            playSound()
+                        }
                     
                     Image("jarra2")
                         .renderingMode(.original)
@@ -98,7 +110,7 @@ struct Game2View: View {
                         .frame(width: geo.size.width * 0.24, height: geo.size.height * 0.18)
                         .position(x: UIScreen.main.bounds.width * 1 / 5, y: UIScreen.main.bounds.height * 1.8 / 5)
                         .onTapGesture {
-                            print("dalhe")
+                            playSound()
                         }
                     
                     Image("perfume1")
@@ -106,6 +118,9 @@ struct Game2View: View {
                         .resizable()
                         .frame(width: geo.size.width * 0.24, height: geo.size.height * 0.18)
                         .position(x: UIScreen.main.bounds.width * 0.9 / 5, y: UIScreen.main.bounds.height * 0.75 / 5)
+                        .onTapGesture {
+                            playSound()
+                        }
                     
                     
                     Image("vinagre1")
@@ -113,6 +128,9 @@ struct Game2View: View {
                         .resizable()
                         .frame(width: geo.size.width * 0.2, height: geo.size.height * 0.10)
                         .position(x: UIScreen.main.bounds.width * 2.4 / 5, y: UIScreen.main.bounds.height * 2 / 5)
+                        .onTapGesture {
+                            playSound()
+                        }
                     
                     
                     Image("vinho1")
@@ -120,6 +138,9 @@ struct Game2View: View {
                         .resizable()
                         .frame(width: geo.size.width * 0.25, height: geo.size.height * 0.3)
                         .position(x: UIScreen.main.bounds.width * 3.8 / 5, y: UIScreen.main.bounds.height * 1 / 5)
+                        .onTapGesture {
+                            playSound()
+                        }
                 }
             }
             
@@ -143,6 +164,7 @@ struct Game2View: View {
                         .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 0.9 / 5)
                         .onTapGesture {
                             if1Clicked = true
+                            playSound()
                         }
                     if if1Clicked {
                         ZStack {
@@ -186,6 +208,7 @@ struct Game2View: View {
                         .position(x: UIScreen.main.bounds.width * 1 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1.8 / 5)
                         .onTapGesture {
                             if4Clicked = true
+                            playSound()
                         }
                     if if4Clicked {
                         ZStack {
@@ -229,6 +252,7 @@ struct Game2View: View {
                         .position(x: UIScreen.main.bounds.width * 0.9 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 0.75 / 5)
                         .onTapGesture {
                             if2Clicked = true
+                            playSound()
                         }
                     if if2Clicked {
                         ZStack {
@@ -278,6 +302,7 @@ struct Game2View: View {
                         .position(x: UIScreen.main.bounds.width * 3.8 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1 / 5)
                         .onTapGesture {
                             if3Clicked = true
+                            playSound()
                         }
                 }
             }
@@ -360,6 +385,22 @@ struct Game2View: View {
         .ignoresSafeArea()
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+    }
+    
+    func playSound() {
+        let url = Bundle.main.url(forResource: "glassesSound", withExtension: "mp3")
+        
+        guard url != nil else {
+            return
+        }
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url!)
+            audioPlayer?.play()
+            audioPlayer.volume = 0.4
+        } catch {
+            print("error")
+        }
     }
     
     struct Game2View_Previews: PreviewProvider {

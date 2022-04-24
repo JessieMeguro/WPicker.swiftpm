@@ -5,8 +5,11 @@
 //  Created by Jessica Akemi Meguro on 19/04/22.
 //
 
+import AVFoundation
 import Foundation
 import SwiftUI
+
+var soundPlayer: AVAudioPlayer!
 
 enum PositionX {
     case center, left, right
@@ -172,18 +175,22 @@ struct Game3View: View {
                             if selectedImage == 1 {
                                 if clickPositionY == .down && clickPositionX == .center {
                                     nextImage()
+                                    playSound()
                                 }
                             } else if selectedImage == 2 {
                                 if clickPositionY == .center && clickPositionX == .right {
                                     nextImage()
+                                    playSound()
                                 }
                             } else if selectedImage == 3{
                                 if clickPositionY == .up && clickPositionX == .center {
                                     nextImage()
+                                    playSound()
                                 }
                             } else if selectedImage == 4 {
                                 if clickPositionY == .center && clickPositionX == .center {
                                     nextImage()
+                                    playSound()
                                 }
                             }
                             else {
@@ -258,6 +265,22 @@ struct Game3View: View {
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
         }
+    }
+}
+
+func playSound() {
+    let url = Bundle.main.url(forResource: "rasgoSound", withExtension: "mp3")
+    
+    guard url != nil else {
+        return
+    }
+    
+    do {
+        soundPlayer = try AVAudioPlayer(contentsOf: url!)
+        soundPlayer?.play()
+        soundPlayer.volume = 0.4
+    } catch {
+        print("error")
     }
 }
 
