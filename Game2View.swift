@@ -35,7 +35,7 @@ struct Game2View: View {
                     .animation(.default, value: configuration.isPressed)
                 Text("Continue the day")
                     .padding(.bottom)
-                    .font(.custom("Inter-Bold", size: 27))
+                    .font(.custom("Inter-Bold", size: 24))
                     .foregroundColor(.black)
                     .opacity(0.9)
             }
@@ -82,13 +82,13 @@ struct Game2View: View {
                         .resizable()
                         .frame(width: geo.size.width * 0.19, height: geo.size.height * 0.15)
                         .position(x: UIScreen.main.bounds.width * 4.3 / 5, y: UIScreen.main.bounds.height * 1.9 / 5.1)
-                        
+                    
                     Image("espelho1")
                         .renderingMode(.original)
                         .resizable()
                         .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.22)
                         .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 0.9 / 5)
-                      
+                    
                     Image("jarra2")
                         .renderingMode(.original)
                         .resizable()
@@ -118,180 +118,214 @@ struct Game2View: View {
                         .frame(width: geo.size.width * 0.25, height: geo.size.height * 0.3)
                         .position(x: UIScreen.main.bounds.width * 3.8 / 5, y: UIScreen.main.bounds.height * 1 / 5)
                 }
-                }
+            }
+            
+            Group {
                 
-                Group {
+                GeometryReader { geo in
+                    Image("bolaDeGude")
+                        .resizable()
+                        .frame(width: geo.size.width * 0.07, height: geo.size.height * 0.05)
+                        .position(x: UIScreen.main.bounds.width * 4.5 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1.1 / 5)
                     
-                    GeometryReader { geo in
-                        Image("bolaDeGude")
-                            .resizable()
-                            .frame(width: geo.size.width * 0.07, height: geo.size.height * 0.05)
-                            .position(x: UIScreen.main.bounds.width * 4.5 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1.1 / 5)
-                        
-                        
-                        Image("copo1")
-                            .resizable()
-                            .frame(width: geo.size.width * 0.19, height: geo.size.height * 0.15)
-                            .position(x: UIScreen.main.bounds.width * 4.3 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1.9 / 5.1)
-                        
-                        Image("espelho2")
-                            .resizable()
-                            .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.22)
-                            .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 0.9 / 5)
-                            .onTapGesture {
-                                if1Clicked = true
-                            }
-                        if if1Clicked {
-                            ZStack {
-                                Text("José starts his days picking up \nthe street trash, specially the plastic \nthrown around during the nights.")
+                    
+                    Image("copo1")
+                        .resizable()
+                        .frame(width: geo.size.width * 0.19, height: geo.size.height * 0.15)
+                        .position(x: UIScreen.main.bounds.width * 4.3 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1.9 / 5.1)
+                    
+                    Image("espelho2")
+                        .resizable()
+                        .frame(width: geo.size.width * 0.3, height: geo.size.height * 0.22)
+                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 0.9 / 5)
+                        .onTapGesture {
+                            if1Clicked = true
+                        }
+                    if if1Clicked {
+                        ZStack {
+                                Text("Broken glass can't be thrown in \nthe recycling bin, it must \nbe wrapped in paper before to \n protect waste pickers.")
                                     .padding(.bottom)
-                                    .font(.custom("Inter-SemiBold", size: 27))
+                                    .font(.custom("Inter-SemiBold", size: 24))
                                     .foregroundColor(.black)
                                     .multilineTextAlignment(.center)
                                     .zIndex(21)
                                     .opacity(isImageVisible ? 1 : 0)
-                                    .animation(.easeInOut.delay(8), value: isImageVisible)
+                                    .animation(.easeInOut.delay(6), value: isImageVisible)
                                     .onAppear() {
                                         isImageVisible = false
-                                        }
+                                    }
                                 
-                                Image("jornal2")
+                                Image("jornalClick")
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width: 200, height: 200)
+                                    .frame(width: 500, height: 500)
                                     .zIndex(20)
                                     .opacity(isImageVisible ? 1 : 0)
-                                    .animation(.easeInOut.delay(8), value: isImageVisible)
+                                    .animation(.easeInOut.delay(6), value: isImageVisible)
                                     .onAppear() {
                                         isImageVisible = false
-                                        }
                                     }
-                            .position(x: UIScreen.main.bounds.width * 3.8 / 5, y: UIScreen.main.bounds.height * 1 / 5)
-                            }
+                        }
+                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
                         
-                        Image("jarra1")
-                            .resizable()
-                            .frame(width: geo.size.width * 0.24, height: geo.size.height * 0.18)
-                            .position(x: UIScreen.main.bounds.width * 1 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1.8 / 5)
-                            .onTapGesture {
-                                if4Clicked = true
-                            }
-                        if if4Clicked {
-                            ZStack {
-                                Text("José starts his days picking up \nthe street trash, specially the plastic \nthrown around during the nights.")
-                                    .padding(.bottom)
-                                    .font(.custom("Inter-SemiBold", size: 27))
-                                    .foregroundColor(.black)
-                                    .multilineTextAlignment(.center)
-                                    .zIndex(21)
-                                    .opacity(isImageVisible2 ? 1 : 0)
-                                    .animation(.easeInOut.delay(8), value: isImageVisible2)
-                                    .onAppear() {
-                                        isImageVisible2 = false
-                                        }
-                                
-                                Image("jornal2")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 200, height: 200)
-                                    .zIndex(20)
-                                    .opacity(isImageVisible2 ? 1 : 0)
-                                    .animation(.easeInOut.delay(8), value: isImageVisible2)
-                                    .onAppear() {
-                                        isImageVisible2 = false
-                                        }
-                                    }
-                            .position(x: UIScreen.main.bounds.width * 3.8 / 5, y: UIScreen.main.bounds.height * 1 / 5)
-                            }
-                        
-                        Image("perfume2")
-                            .resizable()
-                            .frame(width: geo.size.width * 0.24, height: geo.size.height * 0.18)
-                            .position(x: UIScreen.main.bounds.width * 0.9 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 0.75 / 5)
-                            .onTapGesture {
-                                if2Clicked = true
-                            }
-                        if if2Clicked {
-                            ZStack {
-                                Text("Night")
-                                    .padding(.bottom)
-                                    .font(.custom("Inter-SemiBold", size: 27))
-                                    .foregroundColor(.black)
-                                    .multilineTextAlignment(.center)
-                                    .zIndex(21)
-                                    .opacity(isImageVisible3 ? 1 : 0)
-                                    .animation(.easeInOut.delay(8), value: isImageVisible3)
-                                    .onAppear() {
-                                        isImageVisible3 = false
-                                        }
-                                
-                                Image("jornal2")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 200, height: 200)
-                                    .zIndex(20)
-                                    .opacity(isImageVisible3 ? 1 : 0)
-                                    .animation(.easeInOut.delay(8), value: isImageVisible3)
-                                    .onAppear() {
-                                        isImageVisible3 = false
-                                        }
-                                    }
-                            .position(x: UIScreen.main.bounds.width * 3.8 / 5, y: UIScreen.main.bounds.height * 1 / 5)
-                            }
-                        
-                        Image("vinagre1")
-                            .resizable()
-                            .frame(width: geo.size.width * 0.2, height: geo.size.height * 0.10)
-                            .position(x: UIScreen.main.bounds.width * 2.4 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 2 / 5)
-                        
-                        Image("vinho2")
-                            .resizable()
-                            .frame(width: geo.size.width * 0.25, height: geo.size.height * 0.3)
-                            .position(x: UIScreen.main.bounds.width * 3.8 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1 / 5)
-                            .onTapGesture {
-                                if3Clicked = true
-                            }
+                        ZStack {
+                            Image("errorX")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 150, height: 150)
+                        }
+                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 0.9 / 5)
                     }
+                    
+                    Image("jarra1")
+                        .resizable()
+                        .frame(width: geo.size.width * 0.24, height: geo.size.height * 0.18)
+                        .position(x: UIScreen.main.bounds.width * 1 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1.8 / 5)
+                        .onTapGesture {
+                            if4Clicked = true
+                        }
+                    if if4Clicked {
+                        ZStack {
+                            Text("Jars cannot be filled with food,\nit must be thrown separate.")
+                                .padding(.bottom)
+                                .font(.custom("Inter-SemiBold", size: 24))
+                                .foregroundColor(.black)
+                                .multilineTextAlignment(.center)
+                                .zIndex(21)
+                                .opacity(isImageVisible2 ? 1 : 0)
+                                .animation(.easeInOut.delay(6), value: isImageVisible2)
+                                .onAppear() {
+                                    isImageVisible2 = false
+                                }
+                            
+                            Image("jornalClick")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 500, height: 500)
+                                .zIndex(20)
+                                .opacity(isImageVisible2 ? 1 : 0)
+                                .animation(.easeInOut.delay(6), value: isImageVisible2)
+                                .onAppear() {
+                                    isImageVisible2 = false
+                                }
+                        }
+                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
+                        ZStack {
+                            Image("errorX")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100, height: 100)
+                                .rotationEffect(.degrees(30))
+                        }
+                        .position(x: UIScreen.main.bounds.width * 1 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1.8 / 5)
+                    }
+                    
+                    Image("perfume2")
+                        .resizable()
+                        .frame(width: geo.size.width * 0.24, height: geo.size.height * 0.18)
+                        .position(x: UIScreen.main.bounds.width * 0.9 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 0.75 / 5)
+                        .onTapGesture {
+                            if2Clicked = true
+                        }
+                    if if2Clicked {
+                        ZStack {
+                            Text("Perfume glasses must be empty and \ncleaned before going in the trash.")
+                                .padding(.bottom)
+                                .font(.custom("Inter-SemiBold", size: 24))
+                                .foregroundColor(.black)
+                                .multilineTextAlignment(.center)
+                                .zIndex(21)
+                                .opacity(isImageVisible3 ? 1 : 0)
+                                .animation(.easeInOut.delay(6), value: isImageVisible3)
+                                .onAppear() {
+                                    isImageVisible3 = false
+                                }
+                            
+                            Image("jornalClick")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 500, height: 500)
+                                .zIndex(20)
+                                .opacity(isImageVisible3 ? 1 : 0)
+                                .animation(.easeInOut.delay(6), value: isImageVisible3)
+                                .onAppear() {
+                                    isImageVisible3 = false
+                                }
+                        }
+                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
+                        
+                        ZStack {
+                            Image("errorX")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 100, height: 100)
+                                .rotationEffect(.degrees(-30))
+                        }
+                        .position(x: UIScreen.main.bounds.width * 0.9 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 0.75 / 5)
+                    }
+                    
+                    Image("vinagre1")
+                        .resizable()
+                        .frame(width: geo.size.width * 0.2, height: geo.size.height * 0.10)
+                        .position(x: UIScreen.main.bounds.width * 2.4 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 2 / 5)
+                    
+                    Image("vinho2")
+                        .resizable()
+                        .frame(width: geo.size.width * 0.25, height: geo.size.height * 0.3)
+                        .position(x: UIScreen.main.bounds.width * 3.8 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1 / 5)
+                        .onTapGesture {
+                            if3Clicked = true
+                        }
                 }
+            }
             if if3Clicked {
                 ZStack {
-                    Text("José")
+                    Text("Drinking glass cannot be recycled \nbecause they contain added chemicals.")
                         .padding(.bottom)
-                        .font(.custom("Inter-SemiBold", size: 27))
+                        .font(.custom("Inter-SemiBold", size: 24))
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
                         .zIndex(21)
                         .opacity(isImageVisible4 ? 1 : 0)
-                        .animation(.easeInOut.delay(8), value: isImageVisible4)
+                        .animation(.easeInOut.delay(6), value: isImageVisible4)
                         .onAppear() {
                             isImageVisible4 = false
-                            }
-
-                    Image("jornal2")
+                        }
+                    
+                    Image("jornalClick")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 200, height: 200)
+                        .frame(width: 500, height: 500)
                         .zIndex(20)
                         .opacity(isImageVisible4 ? 1 : 0)
-                        .animation(.easeInOut.delay(8), value: isImageVisible4)
+                        .animation(.easeInOut.delay(6), value: isImageVisible4)
                         .onAppear() {
                             isImageVisible4 = false
-                            }
                         }
-                .position(x: UIScreen.main.bounds.width * 3.8 / 5, y: UIScreen.main.bounds.height * 1 / 5)
                 }
+                .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
                 
-                
+                ZStack {
+                    Image("errorX")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
+                        .rotationEffect(.degrees(30))
+                }
+                .position(x: UIScreen.main.bounds.width * 3.9 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 0.8 / 5)
             }
-            .ignoresSafeArea()
-            .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
+            
+            
         }
+        .ignoresSafeArea()
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
-    
-    struct Game2View_Previews: PreviewProvider {
-        static var previews: some View {
-            Game2View()
-                .previewInterfaceOrientation(.portraitUpsideDown)
-        }
+}
+
+struct Game2View_Previews: PreviewProvider {
+    static var previews: some View {
+        Game2View()
+            .previewInterfaceOrientation(.portraitUpsideDown)
     }
+}
