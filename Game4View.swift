@@ -1,176 +1,277 @@
 //
 //  Game4View.swift
-//  Catador
+//  Picker
 //
 //  Created by Jessica Akemi Meguro on 22/04/22.
 //
 
-import SpriteKit
+import AVFoundation
+import Foundation
 import SwiftUI
 
-class DragAndDropScene: SKScene {
-    private var closeBox = true
-    private var currentNode: SKNode?
-    private var jarra = SKSpriteNode(imageNamed: "jarraMetal")
-    private var cano = SKSpriteNode(imageNamed: "cano")
-    private var coca = SKSpriteNode(imageNamed: "coca")
-    private var clipes = SKSpriteNode(imageNamed: "clipes")
-    private var extintor = SKSpriteNode(imageNamed: "extintor")
-    private var pilhas = SKSpriteNode(imageNamed: "pilha")
-    private var garbage = SKSpriteNode(imageNamed: "lixo")
-    private var background = SKSpriteNode(imageNamed: "fundoJogo4")
-    
-    
-    override func didMove(to view: SKView) {
-        self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        setup()
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
-            let location = touch.location(in: self)
-            
-            let touchedNodes = self.nodes(at: location)
-            for node in touchedNodes.reversed() {
-                if jarra.contains(location) {
-                    self.currentNode = node
+struct FinishButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+        ZStack {
+            Image("buttonStart")
+                .scaleEffect(configuration.isPressed ? 0.8 : 0.8)
+                .frame(width: 700, height: 300)
+                .animation(.default, value: configuration.isPressed)
+            Text("Finish the day")
+                .padding(.bottom)
+                .font(.custom("Inter-Bold", size: 24))
+                .foregroundColor(.black)
+                .opacity(0.9)
+        }
 
-                }
-                if pilhas.contains(location) {
-                    self.currentNode = node
-                }
-                if extintor.contains(location) {
-                    self.currentNode = node
-                }
-                if coca.contains(location) {
-                    self.currentNode = node
-                }
-                if clipes.contains(location) {
-                    self.currentNode = node
-                }
-                if cano.contains(location) {
-                    self.currentNode = node
-                }
-            }
-        }
-    }
-        
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first, let _ = self.currentNode {
-            let touchLocation = touch.location(in: self)
-            jarra.position = touchLocation
-        }
-        
-//        pilhas.position = touchLocation
-//        cano.position = touchLocation
-//        coca.position = touchLocation
-//        clipes.position = touchLocation
-//        extintor.position = touchLocation
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: self)
-            if garbage.contains(location) {
-                jarra.removeFromParent()
-//                pilhas.removeFromParent()
-//                cano.removeFromParent()
-//                coca.removeFromParent()
-//                extintor.removeFromParent()
-//                clipes.removeFromParent()
-                
-//                makeBoxAnimation()
-                self.currentNode = nil
-            }
-        }
-    }
-    
-    func setup(){
-        // ADICIONAR NOVOS OBJETOS AQUI
-        
-        // BACKGROUND
-        background.zPosition = 0
-        background.setScale(0.00075)
-        background.position = CGPoint(x: frame.midX, y: frame.midY)
-        self.addChild(background)
-        
-        //PILHAS
-        pilhas.zPosition = 1
-        pilhas.setScale(0.00025)
-        pilhas.position = CGPoint(x: frame.midX - 0.25, y: frame.midY - 0.41)
-        self.addChild(pilhas)
-        
-        extintor.zPosition = 1
-        extintor.setScale(0.00015)
-        extintor.position = CGPoint(x: frame.midX - 0.09, y: frame.midY - 0.2)
-        self.addChild(extintor)
-        
-        coca.zPosition = 1
-        coca.setScale(0.00015)
-        coca.position = CGPoint(x: frame.midX - 0.08, y: frame.midY - 0.37)
-        self.addChild(coca)
-        
-        cano.zPosition = 1
-        cano.setScale(0.00025)
-        cano.position = CGPoint(x: frame.midX - 0.009, y: frame.midY - 0.42)
-        self.addChild(cano)
-        
-        clipes.zPosition = 1
-        clipes.setScale(0.00025)
-        clipes.position = CGPoint(x: frame.midX - 0.009, y: frame.midY - 0.35)
-        self.addChild(clipes)
-        
-            
-        // JARRA
-        jarra.zPosition = 2
-        jarra.setScale(0.0003)
-        jarra.position = CGPoint(x: frame.midX - 0.2, y: frame.midY - 0.3)
-        
-        self.addChild(jarra)
-        
-        // LIXO
-        garbage.setScale(0.0002)
-        garbage.zPosition = 1
-        garbage.position = CGPoint(x: frame.maxX - 0.25, y: frame.midY - 0.4)
-        self.addChild(garbage)
-    }
-        
-    func makeBoxAnimation(){
-        let box1 = SKTexture(imageNamed: "box1")
-        let box2 = SKTexture(imageNamed: "box2")
-        let box3 = SKTexture(imageNamed: "box3")
-        
-        var frames: [SKTexture] = []
-        frames.append(box1)
-        frames.append(box2)
-        frames.append(box3)
-        
-        if closeBox {
-            garbage.run(SKAction.animate(with: frames, timePerFrame: 0.5, resize: true, restore: false))
-        }
-        closeBox = false
     }
 }
 
 struct Game4View: View {
     
-    var scene: DragAndDropScene {
-        let scene = DragAndDropScene()
-        scene.scaleMode = .aspectFill
-        return scene
+    @State var imageArray: [(imageName: String, position: CGPoint, isImageVisible: Bool)] = [("cano", CGPoint(x: UIScreen.main.bounds.width * 3.5 / 5, y: UIScreen.main.bounds.height * 4 / 5), true), ("coca", CGPoint(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5), true), ("jarraMetal", CGPoint(x: UIScreen.main.bounds.width * 1.5 / 5, y: UIScreen.main.bounds.height * 3.8 / 5), true )
+    ]
+    
+    @State var allRemoved = false
+    @State var isDragging = false
+    @State var position = CGSize.zero
+    @State var if1Clicked = false
+    @State var if2Clicked = false
+    @State var if3Clicked = false
+    @State private var fadeInOut = false
+    @State private var isImageVisible = true
+    @State private var isImageVisible1 = true
+    @State private var isImageVisible2 = true
+    @State private var isImageVisible3 = true
+    @State private var fadeIn = false
+    @State var canNavigate: Bool = false
+    @State var tap = false
+    @State var showSecondView = false
+    
+    init(){
+        UINavigationBar.setAnimationsEnabled(false)
     }
     
     var body: some View {
+        
         ZStack {
-            SpriteView(scene: scene)
+            Image("fundoJogo4")
+                .resizable()
+                .scaledToFill()
+            
+            ZStack {
+                Image("jornalTela4")
+                    .resizable()
+                    .frame(width: 520, height: 202)
+                
+                Text("\nJosé starts his days picking up \nthe street trash, specially the plastic \nthrown around during the nights.")
+                    .padding(.bottom)
+                    .font(.custom("Inter-SemiBold", size: 27))
+                    .foregroundColor(.black)
+                    .multilineTextAlignment(.center)
+            }
+            .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 0.7 / 5)
+            
+            ZStack {
+                Image("newsInfo")
+                    .resizable()
+                    .frame(width: 500, height: 125)
+                
+                Text("Help him pick up the plastic trash.")
+                    .padding(.bottom)
+                    .font(.custom("Inter-SemiBold", size: 24))
+                    .foregroundColor(.white)
+                    .multilineTextAlignment(.center)
+            }
+            .position(x: UIScreen.main.bounds.width * 2 / 5, y: UIScreen.main.bounds.height * 1.15 / 5)
+            .rotationEffect(.degrees(-1))
+            
+            
+            GeometryReader { geo in
+                ZStack {
+                    Image("clipes")
+                        .resizable()
+                        .frame(width: geo.size.width * 0.06, height: geo.size.height * 0.03)
+                        .position(x: UIScreen.main.bounds.width * 3.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5)
+                        .onTapGesture {
+                            if1Clicked = true
+                        }
+                    
+                    if if1Clicked {
+                        ZStack {
+                            
+                            Text("Too small to recycle.")
+                                .padding(.bottom)
+                                .font(.custom("Inter-SemiBold", size: 18))
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.center)
+                                .zIndex(23)
+                                .opacity(isImageVisible1 ? 1 : 0)
+                                .animation(.easeInOut.delay(5), value: isImageVisible1)
+                                .onAppear() {
+                                    isImageVisible1 = false
+                                }
+                            
+                            Image("newsInfo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 230, height: 300)
+                                .zIndex(22)
+                                .opacity(isImageVisible1 ? 1 : 0)
+                                .animation(.easeInOut.delay(5), value: isImageVisible1)
+                                .onAppear() {
+                                    isImageVisible1 = false
+                                }
+                        }
+                        .position(x: UIScreen.main.bounds.width * 3.8 / 5, y: UIScreen.main.bounds.height * 4.75 / 5)
+                        .rotationEffect(.degrees(-4))
+                    }
+                    
+                    Image("extintor")
+                        .resizable()
+                        .frame(width: geo.size.width * 0.15, height: geo.size.height * 0.2)
+                        .position(x: UIScreen.main.bounds.width * 0.8 / 5, y: UIScreen.main.bounds.height * 4.3 / 5)
+                        .onTapGesture {
+                            if2Clicked = true
+                        }
+                    if if2Clicked {
+                        ZStack {
+                            
+                            Text("Extinguishers are\nhazardous waste.")
+                                .padding(.bottom)
+                                .font(.custom("Inter-SemiBold", size: 18))
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.center)
+                                .zIndex(24)
+                                .opacity(isImageVisible2 ? 1 : 0)
+                                .animation(.easeInOut.delay(5), value: isImageVisible2)
+                                .onAppear() {
+                                    isImageVisible2 = false
+                                }
+                            
+                            Image("newsInfo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 230, height: 300)
+                                .zIndex(23)
+                                .opacity(isImageVisible2 ? 1 : 0)
+                                .animation(.easeInOut.delay(5), value: isImageVisible2)
+                                .onAppear() {
+                                    isImageVisible2 = false
+                                }
+                        }
+                        .position(x: UIScreen.main.bounds.width * 0.8 / 5, y: UIScreen.main.bounds.height * 4.6 / 5)
+                    }
+                    
+                    Image("pilha")
+                        .resizable()
+                        .frame(width: geo.size.width * 0.08, height: geo.size.height * 0.04)
+                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 3.9 / 5)
+                        .onTapGesture {
+                            if3Clicked = true
+                        }
+                    if if3Clicked {
+                        ZStack {
+                            
+                            Text("Toxic metals, be careful.")
+                                .padding(.bottom)
+                                .font(.custom("Inter-SemiBold", size: 18))
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.center)
+                                .zIndex(24)
+                                .opacity(isImageVisible3 ? 1 : 0)
+                                .animation(.easeInOut.delay(5), value: isImageVisible3)
+                                .onAppear() {
+                                    isImageVisible3 = false
+                                }
+                            
+                            Image("newsInfo")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 230, height: 300)
+                                .zIndex(23)
+                                .opacity(isImageVisible3 ? 1 : 0)
+                                .animation(.easeInOut.delay(5), value: isImageVisible3)
+                                .onAppear() {
+                                    isImageVisible3 = false
+                                }
+                        }
+                        .position(x: UIScreen.main.bounds.width * 2.35 / 5, y: UIScreen.main.bounds.height * 4.06 / 5)
+                        .rotationEffect(.degrees(-8))
+                    }
+                }
+            }
+            
+            
+            
+            GeometryReader { geo in
+                
+                ForEach(Array(imageArray.enumerated()), id: \.0) { index, image in
+                    Image(image.imageName)
+                        .renderingMode(.original)
+                        .resizable()
+                        .opacity(image.isImageVisible ? 1 : 0)
+                        .animation(.linear)
+                        .frame(width: geo.size.width * 0.123, height: geo.size.height * 0.07)
+                        .offset(x: position.width, y: position.height)
+                        .position(image.position)
+                        .onTapGesture {
+                            withAnimation {
+                                imageArray[index].isImageVisible.toggle()
+                                allRemoved = imageArray.allSatisfy({!$0.isImageVisible})
+                            }
+                        }
+                }
+                
+                if allRemoved && if1Clicked && if2Clicked && if3Clicked {
+                ZStack {
+                    Text("")
+                }
+                .onAppear() {
+                    Timer.scheduledTimer(withTimeInterval: 1.3, repeats: false) { (_) in
+                        withAnimation {
+                            self.showSecondView = true
+                        }
+                    }
+                }
+                }
+                                if showSecondView == true {
+                                    ZStack {
+                                        VStack {
+                                            Image("fundoCompleto4")
+                                                .resizable()
+                                                .scaledToFill()
+                                                .zIndex(20)
+                                                .onAppear() {
+                                                    withAnimation(Animation.easeIn(duration: 0.5)) {
+                                                        fadeIn.toggle()
+                                                    }
+                                                }.opacity(fadeIn ? 1 : 0)
+                                        }
+                
+                                        NavigationLink(destination: FirstView(), isActive: $canNavigate) {
+                                            Button("") {
+                                                self.canNavigate = true
+                                            } .buttonStyle(FinishButton())
+                                        }
+                                        .frame(width: 200, height: 220)
+                                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5)
+                                        .zIndex(21)
+                
+                                    }
+                                }
+            }
+            .ignoresSafeArea()
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
+            
         }
-        .ignoresSafeArea()
     }
     
-}
-
-struct Game4View_Previews: PreviewProvider {
-    static var previews: some View {
-        Game4View()
+    struct Game4View_Previews: PreviewProvider {
+        static var previews: some View {
+            Game4View()
+        }
     }
 }
+
