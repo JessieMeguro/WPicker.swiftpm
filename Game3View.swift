@@ -80,7 +80,7 @@ struct Game3View: View {
                         .resizable()
                         .frame(width: 345, height: 398)
                     
-                    Text("José needs to tear \nthe box open before\nputting on his trash cart\n and recycling.")
+                    Text("José needs to tear \nthe box open before\nputting on his trash cart\n and recycling it.")
                         .padding(.bottom)
                         .font(.custom("Inter-SemiBold", size: 24))
                         .foregroundColor(.black)
