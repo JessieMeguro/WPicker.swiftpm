@@ -21,7 +21,7 @@ struct ContinueButton: ButtonStyle {
                 .animation(.default, value: configuration.isPressed)
             Text("Continue the day")
                 .padding(.bottom)
-                .font(.custom("Inter-Bold", size: 27))
+                .font(.custom("Inter-Bold", size: 24))
                 .foregroundColor(.black)
                 .opacity(0.9)
         }
