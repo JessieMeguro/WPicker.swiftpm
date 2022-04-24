@@ -9,49 +9,23 @@ import AVFoundation
 import Foundation
 import SwiftUI
 
-var player: AVAudioPlayer!
-
-struct ContinueButton: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-        ZStack {
-            Image("buttonStart")
-                .scaleEffect(configuration.isPressed ? 0.8 : 0.8)
-                .frame(width: 700, height: 300)
-                .animation(.default, value: configuration.isPressed)
-            Text("Continue the day")
-                .padding(.bottom)
-                .font(.custom("Inter-Bold", size: 24))
-                .foregroundColor(.black)
-                .opacity(0.9)
-        }
-        
-    }
-}
-
-struct Loading: View {
-    
-    @State var animate = false
-    @State var needsClick = true
-    
-    var body: some View {
-        ZStack{
-            Circle().fill(Color.blue.opacity(0.25)).frame(width: 150, height: 150)
-                .scaleEffect(self.animate ? 1 : 0)
-            Circle().fill(Color.blue.opacity(0.35)).frame(width: 100, height: 100)
-                .scaleEffect(self.animate ? 1 : 0)
-            Circle().fill(Color.blue)
-                .frame(width: 50, height: 50)
-                .scaleEffect(self.animate ? 1 : 0)
-        }
-        .onAppear {
-            self.animate.toggle()
-            needsClick = false
-        }
-        .opacity(needsClick ? 1 : 0)
-        .animation(Animation.linear(duration: 1).repeatCount(5, autoreverses: false))
-    }
-}
+//struct ContinueButton: ButtonStyle {
+//    func makeBody(configuration: Configuration) -> some View {
+//        configuration.label
+//        ZStack {
+//            Image("buttonStart")
+//                .scaleEffect(configuration.isPressed ? 0.8 : 0.8)
+//                .frame(width: 700, height: 300)
+//                .animation(.default, value: configuration.isPressed)
+//            Text("Continue the day")
+//                .padding(.bottom)
+//                .font(.custom("Inter-Bold", size: 24))
+//                .foregroundColor(.black)
+//                .opacity(0.9)
+//        }
+//
+//    }
+//}
 
 struct Game5View: View {
     
@@ -119,10 +93,6 @@ struct Game5View: View {
             //            }
             
             
-                Loading()
-                    .position(x: UIScreen.main.bounds.width * 1.5 / 5, y: UIScreen.main.bounds.height * 3.1 / 5)
-                    .zIndex(20)
-            
             
             GeometryReader { geo in
                 
@@ -138,62 +108,41 @@ struct Game5View: View {
                         .onTapGesture {
                             withAnimation {
                                 imageArray[index].isImageVisible.toggle()
-                                playSound()
                                 allRemoved = imageArray.allSatisfy({!$0.isImageVisible})
                             }
                         }
                 }
-                if allRemoved {
-                    ZStack {
-                        
-                        VStack {
-                            Image("completedGame5")
-                                .resizable()
-                                .scaledToFill()
-                                .zIndex(20)
-                                .onAppear() {
-                                    withAnimation(Animation.easeIn(duration: 0.5)) {
-                                        fadeIn.toggle()
-                                    }
-                                }.opacity(fadeIn ? 1 : 0)
-                        }
-                        
-                        NavigationLink(destination: Game2View(), isActive: $canNavigate) {
-                            Button("") {
-                                self.canNavigate = true
-                            } .buttonStyle(ContinueButton())
-                        }
-                        .frame(width: 200, height: 220)
-                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5)
-                        .zIndex(21)
-                        
-                    }
-                    //                            Text("Botão")
-                    //                                .padding(.bottom)
-                    //                                .font(.custom("Inter-SemiBold", size: 24))
-                    //                                .foregroundColor(.black)
-                    //                                .multilineTextAlignment(.center)
-                }
+//                if allRemoved {
+//                    ZStack {
+//
+//                        VStack {
+//                            Image("completedGame1")
+//                                .resizable()
+//                                .scaledToFill()
+//                                .zIndex(20)
+//                                .onAppear() {
+//                                    withAnimation(Animation.easeIn(duration: 0.5)) {
+//                                        fadeIn.toggle()
+//                                    }
+//                                }.opacity(fadeIn ? 1 : 0)
+//                        }
+//
+//                        NavigationLink(destination: Game2View(), isActive: $canNavigate) {
+//                            Button("") {
+//                                self.canNavigate = true
+//                            } .buttonStyle(ContinueButton())
+//                        }
+//                        .frame(width: 200, height: 220)
+//                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5)
+//                        .zIndex(21)
+//
+//                    }
+//                }
             }
             .ignoresSafeArea()
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
             
-        }
-    }
-    
-    func playSound() {
-        let url = Bundle.main.url(forResource: "plasticSound", withExtension: "mp3")
-        
-        guard url != nil else {
-            return
-        }
-        
-        do {
-            player = try AVAudioPlayer(contentsOf: url!)
-            player?.play()
-        } catch {
-            print("error")
         }
     }
     
