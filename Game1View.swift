@@ -17,14 +17,15 @@ struct ContinueButton: ButtonStyle {
         ZStack {
             Image("buttonStart")
                 .scaleEffect(configuration.isPressed ? 0.8 : 0.8)
-            //                    .opacity(configuration.isPressed ? 1 : 08)
+                .frame(width: 700, height: 300)
                 .animation(.default, value: configuration.isPressed)
             Text("Continue the day")
                 .padding(.bottom)
-                .font(.custom("Inter-Bold", size: 40))
+                .font(.custom("Inter-Bold", size: 27))
                 .foregroundColor(.black)
                 .opacity(0.9)
         }
+        
     }
 }
 
@@ -122,7 +123,7 @@ struct Game1View: View {
                                 .scaledToFill()
                                 .zIndex(20)
                                 .onAppear() {
-                                    withAnimation(Animation.easeIn(duration: 0.6)) {
+                                    withAnimation(Animation.easeIn(duration: 0.5)) {
                                         fadeIn.toggle()
                                     }
                                 }.opacity(fadeIn ? 1 : 0)
