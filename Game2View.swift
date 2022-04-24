@@ -334,7 +334,7 @@ struct Game2View: View {
                 ZStack{
                     
                     VStack {
-                        Image("completedGame1")
+                        Image("fundoCompleto2")
                             .resizable()
                             .scaledToFill()
                             .zIndex(20)
