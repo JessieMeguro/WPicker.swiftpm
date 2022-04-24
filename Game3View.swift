@@ -59,6 +59,25 @@ struct Game3View: View {
     
     @State var animate = false
     @State var needsClick = true
+    @State var canNavigate: Bool = false
+    @State var showSecondView = false
+    
+    struct Clicked2: ButtonStyle {
+        func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+            ZStack {
+                Image("buttonStart")
+                    .scaleEffect(configuration.isPressed ? 0.8 : 0.8)
+                    .frame(width: 700, height: 300)
+                    .animation(.default, value: configuration.isPressed)
+                Text("Continue the day")
+                    .padding(.bottom)
+                    .font(.custom("Inter-Bold", size: 24))
+                    .foregroundColor(.black)
+                    .opacity(0.9)
+            }
+        }
+    }
     
     struct Loading: View {
         
@@ -195,8 +214,43 @@ struct Game3View: View {
                 }
                 
                 if selectedImage == 4 {
+                    ZStack {
+                        Text("")
+                    }
+                    .onAppear() {
+                        Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (_) in
+                            withAnimation {
+                                self.showSecondView = true
+                            }
+                        }
+                    }
                     Loading()
                         .position(x: UIScreen.main.bounds.width * 2.2 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
+                }
+                
+                if showSecondView == true {
+                    ZStack{
+                        VStack {
+                            Image("fundoCompleto2")
+                                .resizable()
+                                .scaledToFill()
+                                .zIndex(20)
+                                .onAppear() {
+                                    withAnimation(Animation.easeIn( duration: 0.5)) {
+                                        fadeIn.toggle()
+                                    }
+                                }.opacity(fadeIn ? 1 : 0)
+                        }
+                        
+                        NavigationLink(destination: Game4View(), isActive: $canNavigate) {
+                            Button("") {
+                                self.canNavigate = true
+                            } .buttonStyle(ContinueButton())
+                        }
+                        .frame(width: 200, height: 220)
+                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5)
+                        .zIndex(21)
+                    }
                 }
                 
             }
