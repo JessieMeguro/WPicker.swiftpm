@@ -231,7 +231,7 @@ struct Game3View: View {
                 if showSecondView == true {
                     ZStack{
                         VStack {
-                            Image("fundoCompleto2")
+                            Image("fundoCompleto3")
                                 .resizable()
                                 .scaledToFill()
                                 .zIndex(20)

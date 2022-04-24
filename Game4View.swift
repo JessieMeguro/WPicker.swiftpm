@@ -34,6 +34,22 @@ class DragAndDropScene: SKScene {
             for node in touchedNodes.reversed() {
                 if jarra.contains(location) {
                     self.currentNode = node
+
+                }
+                if pilhas.contains(location) {
+                    self.currentNode = node
+                }
+                if extintor.contains(location) {
+                    self.currentNode = node
+                }
+                if coca.contains(location) {
+                    self.currentNode = node
+                }
+                if clipes.contains(location) {
+                    self.currentNode = node
+                }
+                if cano.contains(location) {
+                    self.currentNode = node
                 }
             }
         }
@@ -44,6 +60,12 @@ class DragAndDropScene: SKScene {
             let touchLocation = touch.location(in: self)
             jarra.position = touchLocation
         }
+        
+//        pilhas.position = touchLocation
+//        cano.position = touchLocation
+//        coca.position = touchLocation
+//        clipes.position = touchLocation
+//        extintor.position = touchLocation
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -51,6 +73,11 @@ class DragAndDropScene: SKScene {
             let location = touch.location(in: self)
             if garbage.contains(location) {
                 jarra.removeFromParent()
+//                pilhas.removeFromParent()
+//                cano.removeFromParent()
+//                coca.removeFromParent()
+//                extintor.removeFromParent()
+//                clipes.removeFromParent()
                 
 //                makeBoxAnimation()
                 self.currentNode = nil
@@ -69,9 +96,29 @@ class DragAndDropScene: SKScene {
         
         //PILHAS
         pilhas.zPosition = 1
-        pilhas.setScale(0.00075)
-        pilhas.position = CGPoint(x: frame.midX, y: frame.midY)
+        pilhas.setScale(0.00025)
+        pilhas.position = CGPoint(x: frame.midX - 0.25, y: frame.midY - 0.41)
         self.addChild(pilhas)
+        
+        extintor.zPosition = 1
+        extintor.setScale(0.00015)
+        extintor.position = CGPoint(x: frame.midX - 0.09, y: frame.midY - 0.2)
+        self.addChild(extintor)
+        
+        coca.zPosition = 1
+        coca.setScale(0.00015)
+        coca.position = CGPoint(x: frame.midX - 0.08, y: frame.midY - 0.37)
+        self.addChild(coca)
+        
+        cano.zPosition = 1
+        cano.setScale(0.00025)
+        cano.position = CGPoint(x: frame.midX - 0.009, y: frame.midY - 0.42)
+        self.addChild(cano)
+        
+        clipes.zPosition = 1
+        clipes.setScale(0.00025)
+        clipes.position = CGPoint(x: frame.midX - 0.009, y: frame.midY - 0.35)
+        self.addChild(clipes)
         
             
         // JARRA
