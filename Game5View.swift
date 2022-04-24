@@ -9,23 +9,23 @@ import AVFoundation
 import Foundation
 import SwiftUI
 
-//struct ContinueButton: ButtonStyle {
-//    func makeBody(configuration: Configuration) -> some View {
-//        configuration.label
-//        ZStack {
-//            Image("buttonStart")
-//                .scaleEffect(configuration.isPressed ? 0.8 : 0.8)
-//                .frame(width: 700, height: 300)
-//                .animation(.default, value: configuration.isPressed)
-//            Text("Continue the day")
-//                .padding(.bottom)
-//                .font(.custom("Inter-Bold", size: 24))
-//                .foregroundColor(.black)
-//                .opacity(0.9)
-//        }
-//
-//    }
-//}
+struct FinishButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+        ZStack {
+            Image("buttonStart")
+                .scaleEffect(configuration.isPressed ? 0.8 : 0.8)
+                .frame(width: 700, height: 300)
+                .animation(.default, value: configuration.isPressed)
+            Text("Finish the day")
+                .padding(.bottom)
+                .font(.custom("Inter-Bold", size: 24))
+                .foregroundColor(.black)
+                .opacity(0.9)
+        }
+
+    }
+}
 
 struct Game5View: View {
     
@@ -222,32 +222,44 @@ struct Game5View: View {
                             }
                         }
                 }
-                //                if allRemoved {
-                //                    ZStack {
-                //
-                //                        VStack {
-                //                            Image("completedGame1")
-                //                                .resizable()
-                //                                .scaledToFill()
-                //                                .zIndex(20)
-                //                                .onAppear() {
-                //                                    withAnimation(Animation.easeIn(duration: 0.5)) {
-                //                                        fadeIn.toggle()
-                //                                    }
-                //                                }.opacity(fadeIn ? 1 : 0)
-                //                        }
-                //
-                //                        NavigationLink(destination: Game2View(), isActive: $canNavigate) {
-                //                            Button("") {
-                //                                self.canNavigate = true
-                //                            } .buttonStyle(ContinueButton())
-                //                        }
-                //                        .frame(width: 200, height: 220)
-                //                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5)
-                //                        .zIndex(21)
-                //
-                //                    }
-                //                }
+                
+                if allRemoved && if1Clicked && if2Clicked && if3Clicked {
+                ZStack {
+                    Text("")
+                }
+                .onAppear() {
+                    Timer.scheduledTimer(withTimeInterval: 1.3, repeats: false) { (_) in
+                        withAnimation {
+                            self.showSecondView = true
+                        }
+                    }
+                }
+                }
+                                if showSecondView == true {
+                                    ZStack {
+                                        VStack {
+                                            Image("fundoCompleto4")
+                                                .resizable()
+                                                .scaledToFill()
+                                                .zIndex(20)
+                                                .onAppear() {
+                                                    withAnimation(Animation.easeIn(duration: 0.5)) {
+                                                        fadeIn.toggle()
+                                                    }
+                                                }.opacity(fadeIn ? 1 : 0)
+                                        }
+                
+                                        NavigationLink(destination: FirstView(), isActive: $canNavigate) {
+                                            Button("") {
+                                                self.canNavigate = true
+                                            } .buttonStyle(FinishButton())
+                                        }
+                                        .frame(width: 200, height: 220)
+                                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5)
+                                        .zIndex(21)
+                
+                                    }
+                                }
             }
             .ignoresSafeArea()
             .navigationBarHidden(true)
