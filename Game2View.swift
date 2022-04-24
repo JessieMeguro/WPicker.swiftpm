@@ -252,7 +252,7 @@ struct Game2View: View {
                         .position(x: UIScreen.main.bounds.width * 0.9 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 0.75 / 5)
                         .onTapGesture {
                             if2Clicked = true
-                            playSound()
+                            playSound2()
                         }
                     if if2Clicked {
                         ZStack {
@@ -302,7 +302,7 @@ struct Game2View: View {
                         .position(x: UIScreen.main.bounds.width * 3.8 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 1 / 5)
                         .onTapGesture {
                             if3Clicked = true
-                            playSound()
+                            playSound2()
                         }
                 }
             }
@@ -389,6 +389,22 @@ struct Game2View: View {
     
     func playSound() {
         let url = Bundle.main.url(forResource: "glassesSound", withExtension: "mp3")
+        
+        guard url != nil else {
+            return
+        }
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url!)
+            audioPlayer?.play()
+            audioPlayer.volume = 0.4
+        } catch {
+            print("error")
+        }
+    }
+    
+    func playSound2() {
+        let url = Bundle.main.url(forResource: "glassSound", withExtension: "mp3")
         
         guard url != nil else {
             return

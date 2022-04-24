@@ -9,6 +9,8 @@ import AVFoundation
 import Foundation
 import SwiftUI
 
+var musicPlayer: AVAudioPlayer!
+
 struct FinishButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -95,6 +97,7 @@ struct Game4View: View {
                         .position(x: UIScreen.main.bounds.width * 3.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5)
                         .onTapGesture {
                             if1Clicked = true
+                            playSound()
                         }
                     
                     if if1Clicked {
@@ -133,6 +136,7 @@ struct Game4View: View {
                         .position(x: UIScreen.main.bounds.width * 0.8 / 5, y: UIScreen.main.bounds.height * 4.3 / 5)
                         .onTapGesture {
                             if2Clicked = true
+                            playSound()
                         }
                     if if2Clicked {
                         ZStack {
@@ -169,6 +173,7 @@ struct Game4View: View {
                         .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 3.9 / 5)
                         .onTapGesture {
                             if3Clicked = true
+                            playSound()
                         }
                     if if3Clicked {
                         ZStack {
@@ -216,6 +221,7 @@ struct Game4View: View {
                         .offset(x: position.width, y: position.height)
                         .position(image.position)
                         .onTapGesture {
+                            playSound2()
                             withAnimation {
                                 imageArray[index].isImageVisible.toggle()
                                 allRemoved = imageArray.allSatisfy({!$0.isImageVisible})
@@ -265,6 +271,38 @@ struct Game4View: View {
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
             
+        }
+    }
+    
+    func playSound() {
+        let url = Bundle.main.url(forResource: "metalSound", withExtension: "mp3")
+        
+        guard url != nil else {
+            return
+        }
+        
+        do {
+            musicPlayer = try AVAudioPlayer(contentsOf: url!)
+            musicPlayer?.play()
+            musicPlayer.volume = 0.3
+        } catch {
+            print("error")
+        }
+    }
+    
+    func playSound2() {
+        let url = Bundle.main.url(forResource: "metalSound2", withExtension: "mp3")
+        
+        guard url != nil else {
+            return
+        }
+        
+        do {
+            musicPlayer = try AVAudioPlayer(contentsOf: url!)
+            musicPlayer?.play()
+            musicPlayer.volume = 0.3
+        } catch {
+            print("error")
         }
     }
     

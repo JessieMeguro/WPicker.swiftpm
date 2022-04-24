@@ -183,7 +183,7 @@ struct Game1View: View {
     }
     
     func playSound() {
-        let url = Bundle.main.url(forResource: "plasticBottleSound", withExtension: "mp3")
+        let url = Bundle.main.url(forResource: "plasticSound", withExtension: "mp3")
         
         guard url != nil else {
             return

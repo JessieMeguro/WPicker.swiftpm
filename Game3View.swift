@@ -180,17 +180,17 @@ struct Game3View: View {
                             } else if selectedImage == 2 {
                                 if clickPositionY == .center && clickPositionX == .right {
                                     nextImage()
-                                    playSound()
+                                    playSound2()
                                 }
                             } else if selectedImage == 3{
                                 if clickPositionY == .up && clickPositionX == .center {
                                     nextImage()
-                                    playSound()
+                                    playSound3()
                                 }
                             } else if selectedImage == 4 {
                                 if clickPositionY == .center && clickPositionX == .center {
                                     nextImage()
-                                    playSound()
+                                    playSound4()
                                 }
                             }
                             else {
@@ -269,6 +269,54 @@ struct Game3View: View {
 }
 
 func playSound() {
+    let url = Bundle.main.url(forResource: "rasgoSound4", withExtension: "mp3")
+    
+    guard url != nil else {
+        return
+    }
+    
+    do {
+        soundPlayer = try AVAudioPlayer(contentsOf: url!)
+        soundPlayer?.play()
+        soundPlayer.volume = 0.3
+    } catch {
+        print("error")
+    }
+}
+
+func playSound2() {
+    let url = Bundle.main.url(forResource: "rasgoSound2", withExtension: "mp3")
+    
+    guard url != nil else {
+        return
+    }
+    
+    do {
+        soundPlayer = try AVAudioPlayer(contentsOf: url!)
+        soundPlayer?.play()
+        soundPlayer.volume = 0.3
+    } catch {
+        print("error")
+    }
+}
+
+func playSound3() {
+    let url = Bundle.main.url(forResource: "rasgoSound3", withExtension: "mp3")
+    
+    guard url != nil else {
+        return
+    }
+    
+    do {
+        soundPlayer = try AVAudioPlayer(contentsOf: url!)
+        soundPlayer?.play()
+        soundPlayer.volume = 0.3
+    } catch {
+        print("error")
+    }
+}
+
+func playSound4() {
     let url = Bundle.main.url(forResource: "rasgoSound", withExtension: "mp3")
     
     guard url != nil else {
@@ -278,7 +326,7 @@ func playSound() {
     do {
         soundPlayer = try AVAudioPlayer(contentsOf: url!)
         soundPlayer?.play()
-        soundPlayer.volume = 0.4
+        soundPlayer.volume = 0.3
     } catch {
         print("error")
     }
