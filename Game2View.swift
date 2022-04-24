@@ -45,6 +45,7 @@ struct Game2View: View {
             }
         }
     }
+    
     var body: some View {
         ZStack {
             

@@ -22,6 +22,7 @@ struct clickView_Previews: PreviewProvider {
 struct Loading: View {
     
     @State var animate = false
+    @State var needsClick = true
     
     var body: some View {
         ZStack{
@@ -35,7 +36,9 @@ struct Loading: View {
         }
         .onAppear {
             self.animate.toggle()
+            needsClick = false
         }
+        .opacity(needsClick ? 1 : 0)
         .animation(Animation.linear(duration: 1).repeatCount(5, autoreverses: false))
     }
 }

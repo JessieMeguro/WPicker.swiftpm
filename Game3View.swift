@@ -21,6 +21,7 @@ struct Game3View: View {
     let images = ["caixaFechada", "abertaLados", "aberta1", "aberta2" , "aberta3", "aberta4"]
     
     @State var selectedImage = 0
+
     
     func checkYPosition (clickPosition: CGPoint, imageSize: CGSize) -> PositionY {
         
@@ -56,11 +57,39 @@ struct Game3View: View {
         }
     }
     
+    @State var animate = false
+    @State var needsClick = true
+    
+    struct Loading: View {
+        
+        @State var animate = false
+        @State var needsClick = true
+        
+        var body: some View {
+            ZStack{
+                Circle().fill(Color.red.opacity(0.25)).frame(width: 150, height: 150)
+                    .scaleEffect(self.animate ? 1 : 0)
+                Circle().fill(Color.red.opacity(0.35)).frame(width: 100, height: 100)
+                    .scaleEffect(self.animate ? 1 : 0)
+                Circle().fill(Color.red)
+                    .frame(width: 50, height: 50)
+                    .scaleEffect(self.animate ? 1 : 0)
+            }
+            .onAppear {
+                self.animate.toggle()
+                needsClick = false
+            }
+            .opacity(needsClick ? 1 : 0)
+            .animation(Animation.linear(duration: 1).repeatCount(5, autoreverses: false))
+        }
+    }
+    
     func nextImage() {
         if selectedImage < images.count - 1 {
             selectedImage += 1
         }
     }
+
     
     @State private var isImageVisible = true
     @State private var fadeIn = false
@@ -145,6 +174,30 @@ struct Game3View: View {
                         }))
                 }
                 
+                if selectedImage == 0 {
+                    Loading()
+                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 2.6 / 5)
+                }
+                
+                if selectedImage == 1 {
+                    Loading()
+                        .position(x: UIScreen.main.bounds.width * 2.8 / 5, y: UIScreen.main.bounds.height * 3.2 / 5)
+                }
+                
+                if selectedImage == 2 {
+                    Loading()
+                        .position(x: UIScreen.main.bounds.width * 3.7 / 5, y: UIScreen.main.bounds.height * 2.3 / 5)
+                }
+                
+                if selectedImage == 3 {
+                    Loading()
+                        .position(x: UIScreen.main.bounds.width * 2.8 / 5, y: UIScreen.main.bounds.height * 1.3 / 5)
+                }
+                
+                if selectedImage == 4 {
+                    Loading()
+                        .position(x: UIScreen.main.bounds.width * 2.2 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
+                }
                 
             }
             .ignoresSafeArea()
