@@ -20,6 +20,10 @@ struct Game2View: View {
     @State private var isImageVisible2 = true
     @State private var isImageVisible3 = true
     @State private var isImageVisible4 = true
+    @State private var fadeIn = false
+    @State var canNavigate: Bool = false
+    @State var tap = false
+    @State var showSecondView = false
     
     init(){
         UINavigationBar.setAnimationsEnabled(false)
@@ -39,10 +43,8 @@ struct Game2View: View {
                     .foregroundColor(.black)
                     .opacity(0.9)
             }
-            
         }
     }
-    
     var body: some View {
         ZStack {
             
@@ -143,28 +145,28 @@ struct Game2View: View {
                         }
                     if if1Clicked {
                         ZStack {
-                                Text("Broken glass can't be thrown in \nthe recycling bin, it must \nbe wrapped in paper before to \n protect waste pickers.")
-                                    .padding(.bottom)
-                                    .font(.custom("Inter-SemiBold", size: 24))
-                                    .foregroundColor(.black)
-                                    .multilineTextAlignment(.center)
-                                    .zIndex(21)
-                                    .opacity(isImageVisible ? 1 : 0)
-                                    .animation(.easeInOut.delay(6), value: isImageVisible)
-                                    .onAppear() {
-                                        isImageVisible = false
-                                    }
-                                
-                                Image("jornalClick")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 500, height: 500)
-                                    .zIndex(20)
-                                    .opacity(isImageVisible ? 1 : 0)
-                                    .animation(.easeInOut.delay(6), value: isImageVisible)
-                                    .onAppear() {
-                                        isImageVisible = false
-                                    }
+                            Text("Broken glass must be wrapped \nin paper before thrown out \nto protect waste pickers.")
+                                .padding(.bottom)
+                                .font(.custom("Inter-SemiBold", size: 24))
+                                .foregroundColor(.black)
+                                .multilineTextAlignment(.center)
+                                .zIndex(21)
+                                .opacity(isImageVisible ? 1 : 0)
+                                .animation(.easeInOut.delay(5), value: isImageVisible)
+                                .onAppear() {
+                                    isImageVisible = false
+                                }
+                            
+                            Image("jornalClick")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 500, height: 500)
+                                .zIndex(20)
+                                .opacity(isImageVisible ? 1 : 0)
+                                .animation(.easeInOut.delay(5), value: isImageVisible)
+                                .onAppear() {
+                                    isImageVisible = false
+                                }
                         }
                         .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
                         
@@ -186,14 +188,14 @@ struct Game2View: View {
                         }
                     if if4Clicked {
                         ZStack {
-                            Text("Jars cannot be filled with food,\nit must be thrown separate.")
+                            Text("Jars cannot be filled with food,\nthey must be thrown separate.")
                                 .padding(.bottom)
                                 .font(.custom("Inter-SemiBold", size: 24))
                                 .foregroundColor(.black)
                                 .multilineTextAlignment(.center)
                                 .zIndex(21)
                                 .opacity(isImageVisible2 ? 1 : 0)
-                                .animation(.easeInOut.delay(6), value: isImageVisible2)
+                                .animation(.easeInOut.delay(4), value: isImageVisible2)
                                 .onAppear() {
                                     isImageVisible2 = false
                                 }
@@ -204,7 +206,7 @@ struct Game2View: View {
                                 .frame(width: 500, height: 500)
                                 .zIndex(20)
                                 .opacity(isImageVisible2 ? 1 : 0)
-                                .animation(.easeInOut.delay(6), value: isImageVisible2)
+                                .animation(.easeInOut.delay(4), value: isImageVisible2)
                                 .onAppear() {
                                     isImageVisible2 = false
                                 }
@@ -236,7 +238,7 @@ struct Game2View: View {
                                 .multilineTextAlignment(.center)
                                 .zIndex(21)
                                 .opacity(isImageVisible3 ? 1 : 0)
-                                .animation(.easeInOut.delay(6), value: isImageVisible3)
+                                .animation(.easeInOut.delay(4), value: isImageVisible3)
                                 .onAppear() {
                                     isImageVisible3 = false
                                 }
@@ -247,7 +249,7 @@ struct Game2View: View {
                                 .frame(width: 500, height: 500)
                                 .zIndex(20)
                                 .opacity(isImageVisible3 ? 1 : 0)
-                                .animation(.easeInOut.delay(6), value: isImageVisible3)
+                                .animation(.easeInOut.delay(4), value: isImageVisible3)
                                 .onAppear() {
                                     isImageVisible3 = false
                                 }
@@ -280,14 +282,14 @@ struct Game2View: View {
             }
             if if3Clicked {
                 ZStack {
-                    Text("Drinking glass cannot be recycled \nbecause they contain added chemicals.")
+                    Text("Drinking glasses can't be recycled\n as other glasses because \nthey contain added chemicals.")
                         .padding(.bottom)
                         .font(.custom("Inter-SemiBold", size: 24))
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
                         .zIndex(21)
                         .opacity(isImageVisible4 ? 1 : 0)
-                        .animation(.easeInOut.delay(6), value: isImageVisible4)
+                        .animation(.easeInOut.delay(5), value: isImageVisible4)
                         .onAppear() {
                             isImageVisible4 = false
                         }
@@ -298,7 +300,7 @@ struct Game2View: View {
                         .frame(width: 500, height: 500)
                         .zIndex(20)
                         .opacity(isImageVisible4 ? 1 : 0)
-                        .animation(.easeInOut.delay(6), value: isImageVisible4)
+                        .animation(.easeInOut.delay(5), value: isImageVisible4)
                         .onAppear() {
                             isImageVisible4 = false
                         }
@@ -315,17 +317,54 @@ struct Game2View: View {
                 .position(x: UIScreen.main.bounds.width * 3.9 / 5, y: BackgroundSize.height / 2 + UIScreen.main.bounds.height * 0.8 / 5)
             }
             
+            if if1Clicked && if2Clicked && if3Clicked && if4Clicked {
+                ZStack {
+                    Text("")
+                }
+                .onAppear() {
+                    Timer.scheduledTimer(withTimeInterval: 4, repeats: false) { (_) in
+                        withAnimation {
+                            self.showSecondView = true
+                        }
+                    }
+                }
+            }
             
+            if showSecondView == true {
+                ZStack{
+                    
+                    VStack {
+                        Image("completedGame1")
+                            .resizable()
+                            .scaledToFill()
+                            .zIndex(20)
+                            .onAppear() {
+                                withAnimation(Animation.easeIn( duration: 0.5)) {
+                                    fadeIn.toggle()
+                                }
+                            }.opacity(fadeIn ? 1 : 0)
+                    }
+                    
+                    NavigationLink(destination: Game3View(), isActive: $canNavigate) {
+                        Button("") {
+                            self.canNavigate = true
+                        } .buttonStyle(ContinueButton())
+                    }
+                    .frame(width: 200, height: 220)
+                    .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5)
+                    .zIndex(21)
+                }
+            }
         }
         .ignoresSafeArea()
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }
-}
-
-struct Game2View_Previews: PreviewProvider {
-    static var previews: some View {
-        Game2View()
-            .previewInterfaceOrientation(.portraitUpsideDown)
+    
+    struct Game2View_Previews: PreviewProvider {
+        static var previews: some View {
+            Game2View()
+                .previewInterfaceOrientation(.portraitUpsideDown)
+        }
     }
 }
