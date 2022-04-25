@@ -131,11 +131,12 @@ struct Game3View: View {
                         .resizable()
                         .frame(width: 345, height: 398)
                     
-                    Text("José needs to tear \nthe box open before\nputting on his trash cart\n and recycling it.")
+                    Text("José finds a lot of boxes\n during the day, but they \nneed to be flatenned \nbefore recycling.\n")
                         .padding(.bottom)
                         .font(.custom("Inter-SemiBold", size: 24))
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
+                        .rotationEffect(.degrees(-5))
                 }
                 .position(x: UIScreen.main.bounds.width * 3.95 / 5, y: UIScreen.main.bounds.height * 4 / 5)
                 

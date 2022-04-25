@@ -38,6 +38,21 @@ struct FinalView1: View {
                     .padding(80)
             }
             
+            ZStack {
+            Image("jornal3")
+                .resizable()
+                .frame(width: 720, height: 450)
+                .rotationEffect(.degrees(-5))
+            
+            Text("Let's treasure and learn with our waste pickers\n and all those responsable for recycling.\n \nRecycle with care and sort your trash out,\n and we'll have a greener and better world.")
+                .padding(.bottom)
+                .font(.custom("Inter-SemiBold", size: 28))
+                .foregroundColor(.black)
+                .multilineTextAlignment(.center)
+            }
+            .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 1.4 / 5)
+            .shadow(radius: 10)
+            
             VStack{
                 NavigationLink(destination: FirstView(), isActive: $canNavigate) {
                     Button("") {

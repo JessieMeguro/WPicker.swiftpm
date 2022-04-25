@@ -31,7 +31,7 @@ struct FinishButton: ButtonStyle {
 
 struct Game4View: View {
     
-    @State var imageArray: [(imageName: String, position: CGPoint, isImageVisible: Bool)] = [("cano", CGPoint(x: UIScreen.main.bounds.width * 3.5 / 5, y: UIScreen.main.bounds.height * 4 / 5), true), ("coca", CGPoint(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5), true), ("jarraMetal", CGPoint(x: UIScreen.main.bounds.width * 1.5 / 5, y: UIScreen.main.bounds.height * 3.8 / 5), true )
+    @State var imageArray: [(imageName: String, position: CGPoint, isImageVisible: Bool)] = [("cano", CGPoint(x: UIScreen.main.bounds.width * 3.5 / 5, y: UIScreen.main.bounds.height * 4.3 / 5), true), ("coca", CGPoint(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5), true), ("jarraMetal", CGPoint(x: UIScreen.main.bounds.width * 1.5 / 5, y: UIScreen.main.bounds.height * 3.8 / 5), true )
     ]
     
     @State var allRemoved = false
@@ -66,9 +66,9 @@ struct Game4View: View {
                     .resizable()
                     .frame(width: 520, height: 202)
                 
-                Text("\nJosé starts his days picking up \nthe street trash, specially the plastic \nthrown around during the nights.")
+                Text("\nAt night, universities let the metal and \ne-waste on outside bins, José can \npick them up and decide what to sell.")
                     .padding(.bottom)
-                    .font(.custom("Inter-SemiBold", size: 27))
+                    .font(.custom("Inter-SemiBold", size: 24))
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
             }
@@ -77,15 +77,15 @@ struct Game4View: View {
             ZStack {
                 Image("newsInfo")
                     .resizable()
-                    .frame(width: 500, height: 125)
+                    .frame(width: 470, height: 100)
                 
-                Text("Help him pick up the plastic trash.")
+                Text("Pick up only the recyclable metal.")
                     .padding(.bottom)
                     .font(.custom("Inter-SemiBold", size: 24))
                     .foregroundColor(.white)
                     .multilineTextAlignment(.center)
             }
-            .position(x: UIScreen.main.bounds.width * 2 / 5, y: UIScreen.main.bounds.height * 1.15 / 5)
+            .position(x: UIScreen.main.bounds.width * 2 / 5, y: UIScreen.main.bounds.height * 1.2 / 5)
             .rotationEffect(.degrees(-1))
             
             

@@ -38,6 +38,14 @@ struct View3: View {
                     .padding(80)
             }
             
+            Text("Before going home, José can sell \nor create new objects with his materials.")
+                .padding(.bottom)
+                .font(.custom("Inter-SemiBold", size: 28))
+                .foregroundColor(.white)
+                .multilineTextAlignment(.center)
+                .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 0.75 / 5)
+                .shadow(radius: 10)
+            
             VStack{
                 NavigationLink(destination: FinalView1(), isActive: $canNavigate) {
                     Button("") {

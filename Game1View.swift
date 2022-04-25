@@ -88,7 +88,7 @@ struct Game1View: View {
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
             }
-            .position(x: UIScreen.main.bounds.width * 1.9 / 5, y: UIScreen.main.bounds.height * 0.55 / 5)
+            .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 0.55 / 5)
             .rotationEffect(.degrees(-11))
             
             ZStack {
@@ -109,7 +109,7 @@ struct Game1View: View {
             .onAppear {
                 isImageVisible = false
             }
-            .position(x: UIScreen.main.bounds.width * 2 / 5, y: UIScreen.main.bounds.height * 0.9 / 5)
+            .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 1 / 5)
             .rotationEffect(.degrees(-11))
             
             //            ZStack {
