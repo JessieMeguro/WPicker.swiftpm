@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct View2: View {
+struct FinalView1: View {
     
     @State var canNavigate: Bool = false
     
@@ -32,14 +32,14 @@ struct View2: View {
             
             
             VStack(alignment: .center){
-                Image("fundoView2")
+                Image("fundoViewFinal")
                     .resizable()
                     .scaledToFit()
                     .padding(80)
             }
             
             VStack{
-                NavigationLink(destination: Game1View(), isActive: $canNavigate) {
+                NavigationLink(destination: FirstView(), isActive: $canNavigate) {
                     Button("") {
                         self.canNavigate = true
                     } .buttonStyle(NextButton())
@@ -54,8 +54,8 @@ struct View2: View {
     }
 }
 
-struct View2_Previews: PreviewProvider {
+struct FinalView1_Previews: PreviewProvider {
     static var previews: some View {
-        View2()
+        FinalView1()
     }
 }
