@@ -51,12 +51,8 @@ struct Game2View: View {
     
     var body: some View {
         ZStack {
-            
-            //            Button ("Show") {
-            //                showingPopover = true
-            //            }
-            //            .background(.blue)
-            //            .zIndex(2)
+            Color.accentColor.ignoresSafeArea()
+    
             
             Image("fundoJogo2")
                 .resizable()
@@ -175,7 +171,7 @@ struct Game2View: View {
                                 .multilineTextAlignment(.center)
                                 .zIndex(21)
                                 .opacity(isImageVisible ? 1 : 0)
-                                .animation(.easeInOut.delay(5), value: isImageVisible)
+                                .animation(.easeInOut.delay(4), value: isImageVisible)
                                 .onAppear() {
                                     isImageVisible = false
                                 }
@@ -186,7 +182,7 @@ struct Game2View: View {
                                 .frame(width: 500, height: 500)
                                 .zIndex(20)
                                 .opacity(isImageVisible ? 1 : 0)
-                                .animation(.easeInOut.delay(5), value: isImageVisible)
+                                .animation(.easeInOut.delay(4), value: isImageVisible)
                                 .onAppear() {
                                     isImageVisible = false
                                 }
@@ -219,7 +215,7 @@ struct Game2View: View {
                                 .multilineTextAlignment(.center)
                                 .zIndex(21)
                                 .opacity(isImageVisible2 ? 1 : 0)
-                                .animation(.easeInOut.delay(4), value: isImageVisible2)
+                                .animation(.easeInOut.delay(3), value: isImageVisible2)
                                 .onAppear() {
                                     isImageVisible2 = false
                                 }
@@ -230,7 +226,7 @@ struct Game2View: View {
                                 .frame(width: 500, height: 500)
                                 .zIndex(20)
                                 .opacity(isImageVisible2 ? 1 : 0)
-                                .animation(.easeInOut.delay(4), value: isImageVisible2)
+                                .animation(.easeInOut.delay(3), value: isImageVisible2)
                                 .onAppear() {
                                     isImageVisible2 = false
                                 }
@@ -263,7 +259,7 @@ struct Game2View: View {
                                 .multilineTextAlignment(.center)
                                 .zIndex(21)
                                 .opacity(isImageVisible3 ? 1 : 0)
-                                .animation(.easeInOut.delay(4), value: isImageVisible3)
+                                .animation(.easeInOut.delay(3), value: isImageVisible3)
                                 .onAppear() {
                                     isImageVisible3 = false
                                 }
@@ -274,7 +270,7 @@ struct Game2View: View {
                                 .frame(width: 500, height: 500)
                                 .zIndex(20)
                                 .opacity(isImageVisible3 ? 1 : 0)
-                                .animation(.easeInOut.delay(4), value: isImageVisible3)
+                                .animation(.easeInOut.delay(3), value: isImageVisible3)
                                 .onAppear() {
                                     isImageVisible3 = false
                                 }
@@ -315,7 +311,7 @@ struct Game2View: View {
                         .multilineTextAlignment(.center)
                         .zIndex(21)
                         .opacity(isImageVisible4 ? 1 : 0)
-                        .animation(.easeInOut.delay(5), value: isImageVisible4)
+                        .animation(.easeInOut.delay(4), value: isImageVisible4)
                         .onAppear() {
                             isImageVisible4 = false
                         }
@@ -326,7 +322,7 @@ struct Game2View: View {
                         .frame(width: 500, height: 500)
                         .zIndex(20)
                         .opacity(isImageVisible4 ? 1 : 0)
-                        .animation(.easeInOut.delay(5), value: isImageVisible4)
+                        .animation(.easeInOut.delay(4), value: isImageVisible4)
                         .onAppear() {
                             isImageVisible4 = false
                         }
@@ -348,7 +344,7 @@ struct Game2View: View {
                     Text("")
                 }
                 .onAppear() {
-                    Timer.scheduledTimer(withTimeInterval: 4, repeats: false) { (_) in
+                    Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { (_) in
                         withAnimation {
                             self.showSecondView = true
                         }
@@ -370,6 +366,7 @@ struct Game2View: View {
                                 }
                             }.opacity(fadeIn ? 1 : 0)
                     }
+                    .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
                     
                     NavigationLink(destination: Game3View(), isActive: $canNavigate) {
                         Button("") {

@@ -25,7 +25,7 @@ struct FinalView1: View {
                     .animation(.default, value: configuration.isPressed)
                 Text("Play again")
                     .padding(.bottom)
-                    .font(.custom("Inter-Bold", size: 40))
+                    .font(.custom("Inter-Bold", size: 32))
                     .foregroundColor(.black)
                     .opacity(0.9)
             }
@@ -37,22 +37,20 @@ struct FinalView1: View {
             Color.accentColor.ignoresSafeArea()
             
             
-            VStack(alignment: .center){
                 Image("fundoViewFinal")
                     .resizable()
                     .scaledToFit()
                     .padding(80)
-            }
             
             ZStack {
             Image("jornal3")
                 .resizable()
-                .frame(width: 750, height: 425)
+                .frame(width: 650, height: 475)
                 .rotationEffect(.degrees(-5))
             
-            Text("Let's treasure and be more like the waste pickers\n and all recycling workers.\n \nRecycle with care and sort your trash out,\n and we'll have a greener and better world.")
+            Text("You've learned now that recycling\n has to be done in the right way.\n\nLet's treasure and be more like the \nwaste pickers and all recycling workers.\n \nRecycle with care and sort your trash out,\n and we'll have a greener and better world.")
                 .padding(.bottom)
-                .font(.custom("Inter-SemiBold", size: 28))
+                .font(.custom("Inter-SemiBold", size: 24))
                 .foregroundColor(.black)
                 .multilineTextAlignment(.center)
                 .opacity(0.8)
@@ -70,6 +68,7 @@ struct FinalView1: View {
                 .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5)
             }
         }
+//        .ignoresSafeArea()
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         .navigationViewStyle(.stack)

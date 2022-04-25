@@ -21,10 +21,15 @@ enum PositionY {
 
 struct Game3View: View {
     
+    init(){
+        UINavigationBar.setAnimationsEnabled(false)
+    }
+    
+    
     let images = ["caixaFechada", "abertaLados", "aberta1", "aberta2" , "aberta3", "aberta4"]
     
     @State var selectedImage = 0
-
+    
     
     func checkYPosition (clickPosition: CGPoint, imageSize: CGSize) -> PositionY {
         
@@ -111,35 +116,38 @@ struct Game3View: View {
             selectedImage += 1
         }
     }
-
+    
     
     @State private var isImageVisible = true
     @State private var fadeIn = false
     
     var body: some View {
         
-        
-        HStack (alignment: .center){
-            ZStack{
-                
-                Image ("fundo32")
-                    .resizable()
-                    .scaledToFill()
-                
+        ZStack{
+            Color.accentColor.ignoresSafeArea()
+            
+            Image ("fundo32")
+                .resizable()
+                .scaledToFill()
+                .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
+            
+            ZStack {
                 ZStack {
                     Image("jornalTela3")
                         .resizable()
                         .frame(width: 345, height: 398)
                     
-                    Text("José finds a lot of boxes\n during the day, but they \nneed to be flatenned \nbefore recycling.\n")
+                    Text("José finds a lot of boxes\n during the day, but they \nneed to be flattenned \nbefore recycling.\n")
                         .padding(.bottom)
                         .font(.custom("Inter-SemiBold", size: 24))
                         .foregroundColor(.black)
                         .multilineTextAlignment(.center)
                         .rotationEffect(.degrees(-5))
                 }
-                .position(x: UIScreen.main.bounds.width * 3.95 / 5, y: UIScreen.main.bounds.height * 4 / 5)
-                
+                .position(x: UIScreen.main.bounds.width * 4.1 / 5, y: UIScreen.main.bounds.height * 4 / 5)
+            }
+            
+            ZStack {
                 ZStack {
                     Image("jornalAction2")
                         .resizable()
@@ -160,7 +168,9 @@ struct Game3View: View {
                 }
                 .position(x: UIScreen.main.bounds.width * 3.8 / 5, y: UIScreen.main.bounds.height * 4.65 / 5)
                 .rotationEffect(.degrees(-5))
-                
+            }
+            
+            ZStack {
                 GeometryReader { geometry in
                     Image(images[selectedImage])
                         .resizable()
@@ -235,37 +245,38 @@ struct Game3View: View {
                     Loading()
                         .position(x: UIScreen.main.bounds.width * 2.2 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
                 }
-                
-                if showSecondView == true {
-                    ZStack{
-                        VStack {
-                            Image("fundoCompleto3")
-                                .resizable()
-                                .scaledToFill()
-                                .zIndex(20)
-                                .onAppear() {
-                                    withAnimation(Animation.easeIn( duration: 0.5)) {
-                                        fadeIn.toggle()
-                                    }
-                                }.opacity(fadeIn ? 1 : 0)
-                        }
-                        
-                        NavigationLink(destination: Game4View(), isActive: $canNavigate) {
-                            Button("") {
-                                self.canNavigate = true
-                            } .buttonStyle(ContinueButton())
-                        }
-                        .frame(width: 200, height: 220)
-                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5)
-                        .zIndex(21)
-                    }
-                }
-                
             }
-            .ignoresSafeArea()
-            .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
+            
+            if showSecondView == true {
+                ZStack{
+                    VStack {
+                        Image("fundoCompleto3")
+                            .resizable()
+                            .scaledToFill()
+                            .zIndex(20)
+                            .onAppear() {
+                                withAnimation(Animation.easeIn( duration: 0.5)) {
+                                    fadeIn.toggle()
+                                }
+                            }.opacity(fadeIn ? 1 : 0)
+                    }
+                    .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
+                    
+                    NavigationLink(destination: Game4View(), isActive: $canNavigate) {
+                        Button("") {
+                            self.canNavigate = true
+                        } .buttonStyle(ContinueButton())
+                    }
+                    .frame(width: 200, height: 220)
+                    .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5)
+                    .zIndex(24)
+                }
+            }
+            
         }
+        .ignoresSafeArea()
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

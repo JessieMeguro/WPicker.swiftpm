@@ -57,9 +57,12 @@ struct Game4View: View {
     var body: some View {
         
         ZStack {
+            Color.accentColor.ignoresSafeArea()
+            
             Image("fundoJogo4")
                 .resizable()
                 .scaledToFill()
+                .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
             
             ZStack {
                 Image("jornalTela4")
@@ -77,9 +80,9 @@ struct Game4View: View {
             ZStack {
                 Image("newsInfo")
                     .resizable()
-                    .frame(width: 470, height: 100)
+                    .frame(width: 420, height: 100)
                 
-                Text("Pick up only the recyclable metal.")
+                Text("Pick up the recyclable metal.")
                     .padding(.bottom)
                     .font(.custom("Inter-SemiBold", size: 24))
                     .foregroundColor(.white)
@@ -254,6 +257,7 @@ struct Game4View: View {
                                                     }
                                                 }.opacity(fadeIn ? 1 : 0)
                                         }
+                                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
                 
                                         NavigationLink(destination: FinalView1(), isActive: $canNavigate) {
                                             Button("") {
@@ -267,11 +271,10 @@ struct Game4View: View {
                                     }
                                 }
             }
-            .ignoresSafeArea()
-            .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
-            
         }
+        .ignoresSafeArea()
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
     
     func playSound() {

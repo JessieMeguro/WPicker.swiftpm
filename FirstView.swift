@@ -24,7 +24,7 @@ struct FirstView: View {
                     .animation(.default, value: configuration.isPressed)
                 Text("Start")
                     .padding(.bottom)
-                    .font(.custom("Inter-Bold", size: 40))
+                    .font(.custom("Inter-Bold", size: 32))
                     .foregroundColor(.black)
                     .opacity(0.9)
             }

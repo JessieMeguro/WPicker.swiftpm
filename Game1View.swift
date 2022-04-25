@@ -61,6 +61,7 @@ struct Game1View: View {
     @State var allRemoved = false
     @State var isDragging = false
     @State var position = CGSize.zero
+    @State var BackgroundSize = CGSize.zero
     
     init(){
         UINavigationBar.setAnimationsEnabled(false)
@@ -73,9 +74,12 @@ struct Game1View: View {
     var body: some View {
         
         ZStack {
+            Color.accentColor.ignoresSafeArea()
+            
             Image("fundoJogo1")
                 .resizable()
                 .scaledToFill()
+                .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
             
             ZStack {
                 Image("jornal2")
@@ -84,11 +88,11 @@ struct Game1View: View {
                 
                 Text("José starts his days picking up \nthe street trash, specially the plastic \nthrown around during the nights.")
                     .padding(.bottom)
-                    .font(.custom("Inter-SemiBold", size: 27))
+                    .font(.custom("Inter-SemiBold", size: 24))
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
             }
-            .position(x: UIScreen.main.bounds.width * 2.35 / 5, y: UIScreen.main.bounds.height * 0.55 / 5)
+            .position(x: UIScreen.main.bounds.width * 2 / 5, y: UIScreen.main.bounds.height * 0.55 / 5)
             .rotationEffect(.degrees(-11))
             
             ZStack {
@@ -150,13 +154,15 @@ struct Game1View: View {
                             Image("completedGame1")
                                 .resizable()
                                 .scaledToFill()
-                                .zIndex(20)
+                                .ignoresSafeArea()
+                                .zIndex(24)
                                 .onAppear() {
                                     withAnimation(Animation.easeIn(duration: 0.5)) {
                                         fadeIn.toggle()
                                     }
                                 }.opacity(fadeIn ? 1 : 0)
                         }
+                        .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 2.5 / 5)
                         
                         NavigationLink(destination: Game2View(), isActive: $canNavigate) {
                             Button("") {
@@ -168,18 +174,12 @@ struct Game1View: View {
                         .zIndex(21)
                         
                     }
-                    //                            Text("Botão")
-                    //                                .padding(.bottom)
-                    //                                .font(.custom("Inter-SemiBold", size: 24))
-                    //                                .foregroundColor(.black)
-                    //                                .multilineTextAlignment(.center)
                 }
             }
-            .ignoresSafeArea()
-            .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
-            
         }
+        .ignoresSafeArea()
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
     
     func playSound() {

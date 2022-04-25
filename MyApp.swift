@@ -13,6 +13,7 @@ struct MyApp: App {
             FirstView()
                     
             }
+            .ignoresSafeArea()
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
             .navigationViewStyle(.stack)
