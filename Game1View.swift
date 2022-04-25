@@ -88,7 +88,7 @@ struct Game1View: View {
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
             }
-            .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 0.55 / 5)
+            .position(x: UIScreen.main.bounds.width * 2.35 / 5, y: UIScreen.main.bounds.height * 0.55 / 5)
             .rotationEffect(.degrees(-11))
             
             ZStack {
@@ -96,7 +96,7 @@ struct Game1View: View {
                     .resizable()
                     .frame(width: 500, height: 125)
                     .opacity(isImageVisible ? 0 : 1)
-                    .animation(.spring().delay(4), value: isImageVisible)
+                    .animation(.spring().delay(1), value: isImageVisible)
                 
                 Text("Help him pick up the plastic trash.")
                     .padding(.bottom)
@@ -104,12 +104,12 @@ struct Game1View: View {
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .opacity(isImageVisible ? 0 : 1)
-                    .animation(.spring().delay(4), value: isImageVisible)
+                    .animation(.spring().delay(1), value: isImageVisible)
             }
             .onAppear {
                 isImageVisible = false
             }
-            .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 1 / 5)
+            .position(x: UIScreen.main.bounds.width * 2.3 / 5, y: UIScreen.main.bounds.height * 1 / 5)
             .rotationEffect(.degrees(-11))
             
             //            ZStack {

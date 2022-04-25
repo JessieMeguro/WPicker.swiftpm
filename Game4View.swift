@@ -255,7 +255,7 @@ struct Game4View: View {
                                                 }.opacity(fadeIn ? 1 : 0)
                                         }
                 
-                                        NavigationLink(destination: View3(), isActive: $canNavigate) {
+                                        NavigationLink(destination: FinalView1(), isActive: $canNavigate) {
                                             Button("") {
                                                 self.canNavigate = true
                                             } .buttonStyle(FinishButton())

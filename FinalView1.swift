@@ -15,13 +15,19 @@ struct FinalView1: View {
         UINavigationBar.setAnimationsEnabled(false)
     }
     
-    struct NextButton: ButtonStyle {
+    struct RestartButton: ButtonStyle {
         func makeBody(configuration: Configuration) -> some View {
             configuration.label
             ZStack {
-                Image("buttonNext")
+                Image("buttonStart")
                     .scaleEffect(configuration.isPressed ? 0.8 : 0.8)
+                //                    .opacity(configuration.isPressed ? 1 : 08)
                     .animation(.default, value: configuration.isPressed)
+                Text("Play again")
+                    .padding(.bottom)
+                    .font(.custom("Inter-Bold", size: 40))
+                    .foregroundColor(.black)
+                    .opacity(0.9)
             }
         }
     }
@@ -41,14 +47,15 @@ struct FinalView1: View {
             ZStack {
             Image("jornal3")
                 .resizable()
-                .frame(width: 720, height: 450)
+                .frame(width: 750, height: 425)
                 .rotationEffect(.degrees(-5))
             
-            Text("Let's treasure and learn with our waste pickers\n and all those responsable for recycling.\n \nRecycle with care and sort your trash out,\n and we'll have a greener and better world.")
+            Text("Let's treasure and be more like the waste pickers\n and all recycling workers.\n \nRecycle with care and sort your trash out,\n and we'll have a greener and better world.")
                 .padding(.bottom)
                 .font(.custom("Inter-SemiBold", size: 28))
                 .foregroundColor(.black)
                 .multilineTextAlignment(.center)
+                .opacity(0.8)
             }
             .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 1.4 / 5)
             .shadow(radius: 10)
@@ -57,10 +64,10 @@ struct FinalView1: View {
                 NavigationLink(destination: FirstView(), isActive: $canNavigate) {
                     Button("") {
                         self.canNavigate = true
-                    } .buttonStyle(NextButton())
+                    } .buttonStyle(RestartButton())
                 }
-                .frame(width: 50, height: 50)
-                .position(x: UIScreen.main.bounds.width * 4.68 / 5, y: UIScreen.main.bounds.height * 4.68 / 5)
+                .frame(width: 200, height: 220)
+                .position(x: UIScreen.main.bounds.width * 2.5 / 5, y: UIScreen.main.bounds.height * 4.5 / 5)
             }
         }
         .navigationBarHidden(true)
